@@ -1,44 +1,27 @@
 import React from "react";
 import api from "../utils/api";
-import axios from "axios";
+import { Redirect, Link } from "react-router-dom";
 
 class NewUser extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            id: null,
-            username: "",
-            age: "",
-            description: "",
+            username: props.user && props.user.username ? props.user.username : "",
+            age: props.user && props.user.age ? props.user.age : "",
+            description: props.user && props.user.description ? props.user.description : "",
             skilllevel: "",
-            picture: ""
+            picture: null
         };
 
         this._inputChangeHandler = this._inputChangeHandler.bind(this);
         this._submitData = this._submitData.bind(this);
     }
 
-    componentDidMount() {
-        console.log("cdm");
-        api.get("http://localhost:3000/api/auth/newuser/")
-            .then(userId => {
-                console.log("userId", userId);
-                this.setState({ id: userId });
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
     render() {
-        // if statement on the id
         return (
             <div>
-                <h1>
-                    Create you profile
-                    {this.state.picture}
-                </h1>
+                <h1>Create you profile</h1>
                 <form onSubmit={this._submitData}>
                     <input
                         type="text"
@@ -107,14 +90,15 @@ class NewUser extends React.Component {
                     <br />
                     <input
                         type="file"
-                        value={this.props.picture}
-                        onChange={evt => this.props.handleInputChange("picture", evt.target.files[0])}
+                        onChange={evt => this._inputChangeHandler("picture", evt.target.files[0])}
                         className="input"
                         placeholder="Profile Picture"
                     />
                     <br />
                     <br />
-                    <button onClick={this._submitData}>Create Profile</button>
+                    <Link to="/profile">
+                        <button onClick={this._submitData}>Create Profile</button>
+                    </Link>
                 </form>
             </div>
         );
@@ -128,16 +112,15 @@ class NewUser extends React.Component {
 
     _submitData(e) {
         e.preventDefault();
-        const data = this.state;
-        console.log(data);
-        api.post(
-            `/api/auth/newuser/${this.state.id}`, // insert id
-            data
-        )
+        const data = { ...this.state };
+        delete data.picture;
+
+        api.post("/api/auth/newuser", data, { picture: this.state.picture })
             .then(result => {
-                console.log("happy : ", result);
+                localStorage.setItem("identity", result.token);
+                this.props.setUser();
             })
-            .catch(err => console.log("something is wrong ", err));
+            .catch(err => console.log("something went wrong ", err));
     }
 }
 

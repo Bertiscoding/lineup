@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Events = require("./Events");
+const Event = require("./Event");
 const Activities = require("./Activities");
 
 const userSchema = new Schema({
@@ -16,11 +16,11 @@ const userSchema = new Schema({
     age: Number,
     profilePicture: {
         type: String,
-        default: "../public/images/shirt_octi2.jpg"
+        default: "/images/shirt_octi2.jpg"
     },
     description: String,
     skilllevel: String,
-    events: [{ type: Schema.Types.String, ref: "Events" }],
+    events: [{ type: Schema.Types.String, ref: "Event" }],
     activities: [{ type: Schema.Types.String, ref: "Activities" }]
 });
 

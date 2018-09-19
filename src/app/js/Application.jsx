@@ -6,7 +6,8 @@ import jwtDecode from "jwt-decode";
 import Auth from "./Auth";
 import Home from "./Home";
 import Navigation from "./Navigation";
-import Profile from "./index";
+import Profile from "./Components/Profile";
+import Event from "./Components/Event";
 import NotFound from "./NotFound";
 import api from "./utils/api";
 
@@ -36,8 +37,28 @@ class Application extends React.Component {
                         <Route exact path="/profile" render={() => <Profile user={this.state.user} />} />
                         <Route
                             path="/auth"
-                            render={() => <Auth setUser={this._setUser} resetUser={this._resetUser} />}
+                            render={() => (
+                                <Auth
+                                    setUser={this._setUser}
+                                    resetUser={this._resetUser}
+                                    user={this.state.user}
+                                />
+                            )}
                         />
+                        <Route
+                            path="/event/create"
+                            render={() => (
+                                <Event
+                                    handleInputChange={this._handleInputChange}
+                                    date={this.state.startDate}
+                                    location={this.state.location}
+                                    details={this.state.details}
+                                    setUser={this.props.setUser}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+
                         <Route component={NotFound} />
                     </Switch>
                 </div>

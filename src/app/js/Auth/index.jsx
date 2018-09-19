@@ -9,6 +9,7 @@ import NewUser from "./NewUser";
 import Logout from "./Logout";
 import SignIn from "./SignIn";
 import NotFound from "../NotFound";
+import Event from "../Components/Event";
 
 class Auth extends Component {
     constructor(props) {
@@ -44,21 +45,6 @@ class Auth extends Component {
 
                 <Route
                     exact
-                    path="/auth/newuser"
-                    render={() => (
-                        <NewUser
-                            handleInputChange={this._handleInputChange}
-                            username={this.state.username}
-                            age={this.state.age}
-                            description={this.state.description}
-                            skilllevel={this.state.skilllevel}
-                            picture={this.state.picture}
-                        />
-                    )}
-                />
-
-                <Route
-                    exact
                     path="/auth/sign-in"
                     render={() => (
                         <SignIn
@@ -70,6 +56,24 @@ class Auth extends Component {
                         />
                     )}
                 />
+
+                <Route
+                    exact
+                    path="/auth/newuser"
+                    render={() => (
+                        <NewUser
+                            user={this.props.user}
+                            handleInputChange={this._handleInputChange}
+                            username={this.state.username}
+                            age={this.state.age}
+                            description={this.state.description}
+                            skilllevel={this.state.skilllevel}
+                            picture={this.state.picture}
+                            setUser={this.props.setUser}
+                        />
+                    )}
+                />
+
                 <Route
                     exact
                     path="/auth/logout"

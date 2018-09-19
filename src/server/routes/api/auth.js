@@ -5,7 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");
 const upload = require("../../utils/upload");
-const axios = require("axios");
+const { checkLoggedIn } = require("../../utils/middleware");
+
+// SIGN UP
 
 router.post("/sign-up", (req, res) => {
     const { email, password } = req.body;
@@ -22,43 +24,15 @@ router.post("/sign-up", (req, res) => {
         })
 
         .then(user => {
-            const token = jwt.sign({ _id: user._id, email: user.email }, config.SECRET_JWT_PASSPHRASE);
-            console.log(token);
+            const jsonUser = user.toObject();
+            delete jsonUser.password;
+
+            const token = jwt.sign(jsonUser, config.SECRET_JWT_PASSPHRASE);
             res.send({ token });
         });
 });
 
-// CREATE FULL PROFILE
-
-// if(isSetup) return res.render("/") -> check if user has created profile already
-// http://localhost:3000/api/auth/newuser
-router.get("/newuser", (req, res) => {
-    if (req.user) {
-        const userId = req.user._id;
-        console.log(userId);
-        res.send(userId);
-    } else res.redirect("/");
-});
-
-router.post("/newuser/:id", (req, res) => {
-    const { username, age, description, skilllevel } = req.body;
-    const { id } = req.params;
-    console.log("ID: ", id);
-
-    User.findUserById({ id })
-        .then(user => {
-            return req.files && req.files.picture ? upload(req.files.picture) : Promise.resolve();
-        })
-        .then(pictureUrl => {
-            return new User({
-                username,
-                age,
-                description,
-                skilllevel,
-                profilePicture: pictureUrl
-            }).save();
-        });
-});
+// SIGN IN
 
 router.post("/sign-in", (req, res) => {
     const { email, password } = req.body;
@@ -72,16 +46,42 @@ router.post("/sign-in", (req, res) => {
 
         if (!passwordsMatch) return res.status(400).send({ error: "Password is incorrect." });
 
-        const token = jwt.sign(
-            {
-                _id: existingUser._id,
-                email: existingUser.email,
-                profilePicture: existingUser.profilePicture
-            },
-            config.SECRET_JWT_PASSPHRASE
-        );
+        const jsonUser = existingUser.toObject();
+        delete jsonUser.password;
+
+        const token = jwt.sign(jsonUser, config.SECRET_JWT_PASSPHRASE);
+
         res.send({ token });
     });
+});
+
+// CREATE FULL PROFILE
+// http://localhost:3000/api/auth/newuser
+
+router.post("/newuser", checkLoggedIn, (req, res) => {
+    const { username, age, description, skilllevel } = req.body;
+
+    const p = req.files && req.files.picture ? upload(req.files.picture) : Promise.resolve();
+    p.then(pictureUrl => {
+        return User.findByIdAndUpdate(req.user._id, {
+            username,
+            age,
+            description,
+            skilllevel,
+            profilePicture: pictureUrl
+        });
+    })
+        .then(user => {
+            const jsonUser = user.toObject();
+            delete jsonUser.password;
+
+            const token = jwt.sign(jsonUser, config.SECRET_JWT_PASSPHRASE);
+
+            res.send({ token });
+        })
+        .catch(err => {
+            console.error(err);
+        });
 });
 
 module.exports = router;
