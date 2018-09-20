@@ -2,4 +2,3 @@ node_modules/
 dist/
 .cache/
 src/server/public/app/
-src/server/config.js

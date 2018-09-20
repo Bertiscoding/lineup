@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Event = require("./Event");
-const Activities = require("./Activities");
+const Activity = require("./Activity");
 
 const userSchema = new Schema({
     email: {
@@ -21,7 +21,7 @@ const userSchema = new Schema({
     description: String,
     skilllevel: String,
     events: [{ type: Schema.Types.String, ref: "Event" }],
-    activities: [{ type: Schema.Types.String, ref: "Activities" }]
+    activities: [{ type: Schema.Types.String, ref: "Activity" }]
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -5,14 +5,15 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 
-class Event extends Component {
+class Activity extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             startDate: moment(),
             location: undefined,
-            details: undefined,
+            detailActivity: undefined,
+            title: undefined,
             username: props.user && props.user.username ? props.user.username : ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -23,8 +24,32 @@ class Event extends Component {
     render() {
         return (
             <div>
-                <h2>Create a surf session:</h2>
+                <h1>No swell? No sorrow!</h1>
                 <form onSubmit={this._submitData}>
+                    <input
+                        type="text"
+                        name="title"
+                        value={this.state.title}
+                        onChange={evt => this.handleChange("title", evt.target.value)}
+                        placeholder="title"
+                    />
+
+                    <textarea
+                        type="text"
+                        name="detailActivity"
+                        placeholder="More information..."
+                        value={this.state.detailActivity}
+                        onChange={evt => this.handleChange("detailActivity", evt.target.value)}
+                    />
+
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="What is the place or address?"
+                        value={this.state.location}
+                        onChange={evt => this.handleChange("location", evt.target.value)}
+                    />
+
                     <DatePicker
                         selected={this.state.startDate}
                         // onSelect={this.handleSelect}
@@ -45,22 +70,8 @@ class Event extends Component {
                         dateFormat="LLL"
                     />
 
-                    <input
-                        type="text"
-                        name="location"
-                        placeholder="Place/Break"
-                        value={this.state.location}
-                        onChange={evt => this.handleChange("location", evt.target.value)}
-                    />
-                    <textarea
-                        type="text"
-                        name="details"
-                        placeholder="More information..."
-                        value={this.state.detail}
-                        onChange={evt => this.handleChange("details", evt.target.value)}
-                    />
                     <Link to="/profile">
-                        <button onClick={this._submitData}>Let's go surfing</button>
+                        <button onClick={this._submitData}>Let's do it!</button>
                     </Link>
                 </form>
             </div>
@@ -87,14 +98,15 @@ class Event extends Component {
     _submitData(e) {
         e.preventDefault();
         const data = { ...this.state };
+        console.log("data : ", data);
 
-        api.post("/api/event/create", data)
+        api.post("/api/activity/create", data)
             .then(res => {
-                console.log("EVENT res", result);
-                this.props.setUser();
+                console.log("Activity res", res);
+                // this.props.setUser();
             })
             .catch(error => console.log("something went wrong", error));
     }
 }
 
-export default Event;
+export default Activity;

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
@@ -9,7 +8,7 @@ import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
 import Event from "./Components/Event";
 import NotFound from "./NotFound";
-import api from "./utils/api";
+import Activity from "./Components/Activity";
 
 class Application extends React.Component {
     constructor(props) {
@@ -52,6 +51,21 @@ class Application extends React.Component {
                                     handleInputChange={this._handleInputChange}
                                     date={this.state.startDate}
                                     location={this.state.location}
+                                    details={this.state.details}
+                                    setUser={this.props.setUser}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            path="/activity/create"
+                            render={() => (
+                                <Activity
+                                    handleInputChange={this._handleInputChange}
+                                    date={this.state.startDate}
+                                    location={this.state.location}
+                                    title={this.state.title}
                                     details={this.state.details}
                                     setUser={this.props.setUser}
                                     username={this.state.username}

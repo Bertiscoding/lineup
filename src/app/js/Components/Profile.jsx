@@ -9,9 +9,10 @@ class Profile extends Component {
             <div className="container">
                 <img src={this.props.user.profilePicture} width="250px" alt="" />
                 <br />
-                <p>{this.props.user.username}</p>
-                <p>{this.props.user.age} </p>
-                <p>{this.props.user.description}</p>
+                <p>Name: {this.props.user.username}</p>
+                <p>Age: {this.props.user.age} </p>
+                <p>Fun fact: {this.props.user.description}</p>
+                <p>Skillevel: {this.props.user.skilllevel}</p>
             </div>
         );
     }

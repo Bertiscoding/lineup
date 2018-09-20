@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../utils/api";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class NewUser extends React.Component {
     constructor(props) {
@@ -51,11 +51,10 @@ class NewUser extends React.Component {
                     />
                     <br />
                     <br />
-                    <p>What is your skill level?</p>
+                    <p>Where in the water are you usually to find?</p>
                     <label>
                         <input
                             type="radio"
-                            // name="skilllevel"
                             value="top"
                             checked={this.state.skilllevel === "top"}
                             onChange={evt => this._inputChangeHandler("skilllevel", evt.target.value)}
@@ -66,7 +65,6 @@ class NewUser extends React.Component {
                     <label>
                         <input
                             type="radio"
-                            // name="skilllevel"
                             value="middle"
                             checked={this.state.skilllevel === "middle"}
                             onChange={evt => this._inputChangeHandler("skilllevel", evt.target.value)}
@@ -78,7 +76,6 @@ class NewUser extends React.Component {
                     <label>
                         <input
                             type="radio"
-                            // name="skilllevel"
                             value="bottom"
                             checked={this.state.skilllevel === "bottom"}
                             onChange={evt => this._inputChangeHandler("skilllevel", evt.target.value)}
