@@ -5,8 +5,8 @@ const User = require("./User");
 const eventSchema = new Schema({
     detailEvent: String,
     date: Date,
-    attendees: [{ type: Schema.Types.String, ref: "User" }],
-    creator: { type: Schema.Types.String, ref: "User" },
+    attendees: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    creator: { type: Schema.Types.ObjectId, ref: "User" },
     location: String
 });
 
