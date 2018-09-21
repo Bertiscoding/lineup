@@ -108,6 +108,7 @@ class Home extends React.Component {
                         location={this.state.location}
                         date={this.state.date}
                         detailEvent={this.state.detailEvent}
+                        user={this.props.user}
                     />
                     <h1>No swell? No sorrow! Here are some more activities:</h1>
                     <ActivityList />

@@ -68,6 +68,7 @@ class Application extends React.Component {
                                     date={this.state.date}
                                     location={this.state.location}
                                     detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
                                 />
                             )}
                         />
