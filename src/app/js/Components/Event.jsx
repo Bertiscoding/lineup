@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import api from "../utils/api";
 
-class Event extends Component {
+class Event extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             startDate: moment(),
             location: undefined,
-            details: undefined,
+            detailEvent: undefined,
             username: props.user && props.user.username ? props.user.username : ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -54,14 +53,13 @@ class Event extends Component {
                     />
                     <textarea
                         type="text"
-                        name="details"
+                        name="detailEvent"
                         placeholder="More information..."
-                        value={this.state.detail}
-                        onChange={evt => this.handleChange("details", evt.target.value)}
+                        value={this.state.detailEvent}
+                        onChange={evt => this.handleChange("detailEvent", evt.target.value)}
                     />
-                    <Link to="/profile">
-                        <button onClick={this._submitData}>Let's go surfing</button>
-                    </Link>
+
+                    <button onClick={this._submitData}>Let's go surfing</button>
                 </form>
             </div>
         );
@@ -85,13 +83,11 @@ class Event extends Component {
     // }
 
     _submitData(e) {
-        e.preventDefault();
-        const data = { ...this.state };
+        const data = { ...this.state, date: this.state.startDate };
 
         api.post("/api/event/create", data)
-            .then(res => {
-                console.log("EVENT res", result);
-                this.props.setUser();
+            .then(result => {
+                this.props.history.push("/");
             })
             .catch(error => console.log("something went wrong", error));
     }

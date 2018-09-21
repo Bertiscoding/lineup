@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import api from "../utils/api";
 
-class Activity extends Component {
+class Activity extends React.Component {
     constructor(props) {
         super(props);
 
@@ -70,9 +69,7 @@ class Activity extends Component {
                         dateFormat="LLL"
                     />
 
-                    <Link to="/profile">
-                        <button onClick={this._submitData}>Let's do it!</button>
-                    </Link>
+                    <button onClick={this._submitData}>Let's do it!</button>
                 </form>
             </div>
         );
@@ -97,13 +94,13 @@ class Activity extends Component {
 
     _submitData(e) {
         e.preventDefault();
-        const data = { ...this.state };
+        const data = { ...this.state, date: this.state.startDate };
         console.log("data : ", data);
 
         api.post("/api/activity/create", data)
-            .then(res => {
-                console.log("Activity res", res);
+            .then(result => {
                 // this.props.setUser();
+                this.props.history.push("/");
             })
             .catch(error => console.log("something went wrong", error));
     }

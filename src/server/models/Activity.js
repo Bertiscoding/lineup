@@ -5,7 +5,7 @@ const User = require("./User");
 const activitySchema = new Schema({
     title: String,
     detailActivity: String,
-    date: String,
+    date: Date,
     attendees: [{ type: Schema.Types.String, ref: "User" }],
     creator: { type: Schema.Types.String, ref: "User" },
     location: String

@@ -12,7 +12,7 @@ class Profile extends Component {
                 <p>Name: {this.props.user.username}</p>
                 <p>Age: {this.props.user.age} </p>
                 <p>Fun fact: {this.props.user.description}</p>
-                <p>Skillevel: {this.props.user.skilllevel}</p>
+                <p>You usually find me around the {this.props.user.skilllevel} of the lineup.</p>
             </div>
         );
     }

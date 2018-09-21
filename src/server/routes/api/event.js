@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../../models/Event");
-const { checkLoggedIn } = require("../../utils/middleware");
 
 // CREATE SURF EVENT
-router.post("/create", checkLoggedIn, (req, res) => {
+router.post("/create", (req, res) => {
     const { detailEvent, location, date } = req.body;
 
     new Event({
@@ -20,6 +19,16 @@ router.post("/create", checkLoggedIn, (req, res) => {
         .catch(err => {
             console.error(err);
         });
+});
+
+// DISPLAY SURF EVENT
+
+router.get("/list", (req, res) => {
+    let user = req.user.username;
+
+    Event.find({}).then(events => {
+        res.send(events);
+    });
 });
 
 module.exports = router;

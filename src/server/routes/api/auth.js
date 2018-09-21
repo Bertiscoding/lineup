@@ -60,21 +60,25 @@ router.post("/sign-in", (req, res) => {
 
 router.post("/newuser", checkLoggedIn, (req, res) => {
     const { username, age, description, skilllevel } = req.body;
-
-    const p = req.files && req.files.picture ? upload(req.files.picture) : Promise.resolve();
+    console.log(req.body);
+    const p = req.files && req.files.picture ? upload(req.files.picture) : Promise.resolve(undefined);
     p.then(pictureUrl => {
-        return User.findByIdAndUpdate(req.user._id, {
+        console.log("PICTURE URL", pictureUrl);
+
+        const updateData = {
             username,
             age,
             description,
-            skilllevel,
-            profilePicture: pictureUrl
-        });
+            skilllevel
+        };
+        if (pictureUrl) updateData.profilePicture = pictureUrl;
+
+        return User.findByIdAndUpdate(req.user._id, updateData, { new: true });
     })
         .then(user => {
             const jsonUser = user.toObject();
             delete jsonUser.password;
-
+            console.log(jsonUser);
             const token = jwt.sign(jsonUser, config.SECRET_JWT_PASSPHRASE);
 
             res.send({ token });

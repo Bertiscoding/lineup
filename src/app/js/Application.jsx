@@ -9,6 +9,7 @@ import Profile from "./Components/Profile";
 import Event from "./Components/Event";
 import NotFound from "./NotFound";
 import Activity from "./Components/Activity";
+import EventList from "./Components/EventList";
 
 class Application extends React.Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class Application extends React.Component {
                             )}
                         />
                         <Route
+                            exact
                             path="/event/create"
                             render={() => (
                                 <Event
@@ -59,6 +61,18 @@ class Application extends React.Component {
                         />
 
                         <Route
+                            exact
+                            path="/event/list"
+                            render={() => (
+                                <EventList
+                                    date={this.state.date}
+                                    location={this.state.location}
+                                    detailEvent={this.state.detailEvent}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
                             path="/activity/create"
                             render={() => (
                                 <Activity

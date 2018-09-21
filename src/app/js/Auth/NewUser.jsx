@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../utils/api";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class NewUser extends React.Component {
     constructor(props) {
@@ -93,9 +93,8 @@ class NewUser extends React.Component {
                     />
                     <br />
                     <br />
-                    <Link to="/profile">
-                        <button onClick={this._submitData}>Create Profile</button>
-                    </Link>
+
+                    <button onClick={this._submitData}>Create Profile</button>
                 </form>
             </div>
         );
@@ -112,13 +111,15 @@ class NewUser extends React.Component {
         const data = { ...this.state };
         delete data.picture;
 
-        api.post("/api/auth/newuser", data, { picture: this.state.picture })
+        const pictures = this.state.picture ? { picture: this.state.picture } : undefined;
+        api.post("/api/auth/newuser", data, pictures)
             .then(result => {
                 localStorage.setItem("identity", result.token);
                 this.props.setUser();
+                this.props.history.push("/profile");
             })
             .catch(err => console.log("something went wrong ", err));
     }
 }
 
-export default NewUser;
+export default withRouter(NewUser);

@@ -9,7 +9,7 @@ router.get("/:id", (req, res) => {
     const { id } = req.params;
 
     axios
-        .get(`http://magicseaweed.com/api/${config.MAGICSEAWEED_KEY}/forecast/?spot_id=88`)
+        .get(`http://magicseaweed.com/api/${config.MAGICSEAWEED_KEY}/forecast/?spot_id=${id}`)
         .then(forecast => {
             res.send(forecast.data);
         });
