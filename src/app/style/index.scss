@@ -1,0 +1,20 @@
+$primary-color: #76c1d1;
+$secondary-color: #648cba;
+$text-color: #333;
+$grey: rgb(200, 200, 200);
+
+//COLOR CODES
+.color {
+    color: #dad5dc;
+    color: #a7c4de;
+    color: #648cba;
+    color: #76c1d1;
+    color: #acdbdf;
+    color: #d7eaea;
+}
+
+@import "./base.scss";
+@import "./home.scss";
+
+@import "./components.scss";
+@import "./navigation.scss";
