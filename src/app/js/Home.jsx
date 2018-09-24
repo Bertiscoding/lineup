@@ -68,9 +68,9 @@ class Home extends React.Component {
     };
     render() {
         return (
-            <div>
-                <div className="home__container home__forecast">
-                    <h1>Surf forecast:</h1>
+            <div className="home">
+                <div className="home__forecast">
+                    <h1>Check out the forecast</h1>
                     <form onSubmit={this.getForecast}>
                         <select
                             name="spot"
@@ -102,15 +102,17 @@ class Home extends React.Component {
                         error={this.state.error}
                     />
                 </div>
-                <div className="home__container home__eventlist">
-                    <h1>Let's go surfing:</h1>
+                <div className="home__list">
+                    <h1>Let's go surfing</h1>
                     <EventList
                         location={this.state.location}
                         date={this.state.date}
                         detailEvent={this.state.detailEvent}
                         user={this.props.user}
                     />
-                    <h1>No swell? No sorrow! Here are some more activities:</h1>
+                    <h1>
+                        No swell? No sorrow! <br /> Here are some more activities:
+                    </h1>
                     <ActivityList />
                 </div>
             </div>

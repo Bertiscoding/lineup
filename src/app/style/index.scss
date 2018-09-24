@@ -1,20 +1,24 @@
-$primary-color: #76c1d1;
-$secondary-color: #648cba;
-$text-color: #333;
-$grey: rgb(200, 200, 200);
+$primary-color: #648cba;
+$primary-color-light: #a7c4de;
+$secondary-color: #76c1d1;
+$secondary-color-light: #acdbdf;
+$color-white: #d7eaea;
+$color-light: #dad5dc;
+$color-black: #25282b;
+$box-shadow-1: 0 3px 10px rgba(46, 70, 94, 0.692);
 
 //COLOR CODES
-.color {
-    color: #dad5dc;
-    color: #a7c4de;
-    color: #648cba;
-    color: #76c1d1;
-    color: #acdbdf;
-    color: #d7eaea;
-}
+// .color {
+//     color: #dad5dc;
+//     color: #a7c4de;
+//     color: #648cba;
+//     color: #76c1d1;
+//     color: #acdbdf;
+//     color: #d7eaea;
+//     color: #25282b;
+// }
 
 @import "./base.scss";
-@import "./home.scss";
 
 @import "./components.scss";
 @import "./navigation.scss";

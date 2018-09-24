@@ -10,7 +10,8 @@ class EventList extends React.Component {
         this.state = {
             events: [],
             loading: true,
-            attendees: []
+            attendees: [],
+            username: props.user && props.user.username ? props.user.username : ""
         };
     }
 
@@ -20,7 +21,6 @@ class EventList extends React.Component {
                 events: events,
                 loading: false,
                 attendees: events.attendees
-                // set attending state here?
             });
         });
     }
@@ -34,17 +34,15 @@ class EventList extends React.Component {
             const isAttending = this.props.user && el.attendees.includes(this.props.user._id);
 
             return (
-                <div className="event" key={el._id}>
-                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
+                <div className="event__card" key={el._id}>
+                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")}</p>
                     <p>Where: {el.location}</p>
                     <p>Details: {el.detailEvent}</p>
                     <p>Who's going:</p>
-
+                    <p>Initiated by {this.state.username} </p>
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}
                     </button>
-
-                    <hr />
                 </div>
             );
         });

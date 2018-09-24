@@ -1,43 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import Icons from "./../assets/images/sprite.svg";
+import Logo from "./../assets/images/li-logo-white-01.png";
 
 const Navigation = props => {
     return (
-        <div className="navigation">
-            <div className="container nav-content">
-                <div>
-                    <Link className="link nav-link" to="/">
-                        Home
+        <div className="nav">
+            <div className="container nav__content">
+                <div className="nav__left">
+                    <Link className="nav__link" to="/">
+                        <div className="nav__logo">
+                            <img src={Logo} alt="logo-lineup" />
+                        </div>
                     </Link>
-                    {props.user && (
-                        <span>
-                            &nbsp; &nbsp; &nbsp;
-                            <Link className="link nav-link" to="/profile">
-                                Profile
-                            </Link>
-                        </span>
-                    )}
                 </div>
-                <div>
-                    {props.user ? (
-                        <Link className="link nav-link" to="/auth/logout">
-                            Logout
+
+                <div className="nav__right">
+                    <div>
+                        <Link className="nav__link" to="/create">
+                            <button>Create Event</button>
                         </Link>
-                    ) : (
-                        <span>
-                            <Link className="link nav-link" to="/auth/sign-in">
-                                Sign in
+                    </div>
+
+                    <div>
+                        {props.user && (
+                            <span>
+                                <Link className="nav__link" to="/profile">
+                                    <svg className="nav__icon icon">
+                                        <use xlinkHref={`${Icons}#surfer`} />
+                                    </svg>
+                                </Link>
+                            </span>
+                        )}
+                    </div>
+
+                    <div>
+                        {props.user ? (
+                            <Link className="nav__link" to="/auth/logout">
+                                <svg className="nav__icon icon">
+                                    <use xlinkHref={`${Icons}#logout`} />
+                                </svg>
                             </Link>
-                            &nbsp; &nbsp; &nbsp;
-                            <Link className="link nav-link" to="/auth/sign-up">
-                                Sign up
-                            </Link>
-                        </span>
-                    )}
+                        ) : (
+                            <span>
+                                <Link className="nav__link" to="/auth/sign-in">
+                                    Sign in
+                                </Link>
+                                <Link className="nav__link" to="/auth/sign-up">
+                                    Sign up
+                                </Link>
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navigation
+export default Navigation;
