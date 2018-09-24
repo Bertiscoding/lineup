@@ -21,10 +21,11 @@ class Event extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="create__event">
                 <h2>Create a surf session:</h2>
                 <form onSubmit={this._submitData}>
                     <DatePicker
+                        className="datepicker"
                         selected={this.state.startDate}
                         // onSelect={this.handleSelect}
                         onChange={this.changeDate}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import Forecast from "./Components/Forecast";
 import EventList from "./Components/EventList";
 import ActivityList from "./Components/ActivityList";
@@ -67,6 +68,9 @@ class Home extends React.Component {
         });
     };
     render() {
+        if (!this.props.user) {
+            return <Redirect to="/auth/sign-in" />;
+        }
         return (
             <div className="home">
                 <div className="home__forecast">
@@ -103,17 +107,26 @@ class Home extends React.Component {
                     />
                 </div>
                 <div className="home__list">
-                    <h1>Let's go surfing</h1>
-                    <EventList
-                        location={this.state.location}
-                        date={this.state.date}
-                        detailEvent={this.state.detailEvent}
-                        user={this.props.user}
-                    />
-                    <h1>
-                        No swell? No sorrow! <br /> Here are some more activities:
-                    </h1>
-                    <ActivityList />
+                    <div className="home__list-surf">
+                        <h1>Let's go surfing</h1>
+                        <EventList
+                            location={this.state.location}
+                            date={this.state.date}
+                            detailEvent={this.state.detailEvent}
+                            user={this.props.user}
+                        />
+                    </div>
+                    <div className="home__list-activity">
+                        <h1>
+                            No swell? No sorrow! <br /> Here are some more activities:
+                        </h1>
+                        <ActivityList
+                            location={this.state.location}
+                            date={this.state.date}
+                            detailEvent={this.state.detailEvent}
+                            user={this.props.user}
+                        />
+                    </div>
                 </div>
             </div>
         );

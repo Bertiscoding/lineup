@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Activity = require("../../models/Activity");
 
-// CREATE SURF EVENT
+// CREATE Activity
 router.post("/create", (req, res) => {
     const { title, detailActivity, date, location } = req.body;
 
@@ -37,18 +37,18 @@ router.get("/list", (req, res) => {
 router.post("/:id/attend", (req, res, next) => {
     let activityId = req.params.id;
 
-    Event.findById(activityId).then(event => {
+    Activity.findById(activityId).then(activity => {
         // if NOT attending yet
-        if (!event.attendees.map(el => el.toString()).includes(req.user._id)) {
-            Event.findByIdAndUpdate(eventId, { $push: { attendees: req.user._id } }, { new: true })
-                .then(event => {
-                    res.send(event);
+        if (!activity.attendees.map(el => el.toString()).includes(req.user._id)) {
+            Activity.findByIdAndUpdate(activityId, { $push: { attendees: req.user._id } }, { new: true })
+                .then(activity => {
+                    res.send(activity);
                 })
                 .catch(console.error);
         } else {
-            Event.findByIdAndUpdate(activityId, { $pull: { attendees: req.user._id } }, { new: true })
-                .then(event => {
-                    res.send(event);
+            Activity.findByIdAndUpdate(activityId, { $pull: { attendees: req.user._id } }, { new: true })
+                .then(activity => {
+                    res.send(activity);
                 })
                 .catch(console.error);
         }

@@ -8,7 +8,7 @@ const Navigation = props => {
         <div className="nav">
             <div className="container nav__content">
                 <div className="nav__left">
-                    <Link className="nav__link" to="/">
+                    <Link className="nav__link" to="/dashboard">
                         <div className="nav__logo">
                             <img src={Logo} alt="logo-lineup" />
                         </div>

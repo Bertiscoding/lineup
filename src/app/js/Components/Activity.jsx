@@ -22,7 +22,7 @@ class Activity extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="create__activity">
                 <h1>No swell? No sorrow!</h1>
                 <form onSubmit={this._submitData}>
                     <input
@@ -50,6 +50,7 @@ class Activity extends React.Component {
                     />
 
                     <DatePicker
+                        className="datepicker"
                         selected={this.state.startDate}
                         // onSelect={this.handleSelect}
                         onChange={this.changeDate}

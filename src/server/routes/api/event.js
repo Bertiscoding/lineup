@@ -28,9 +28,12 @@ router.post("/create", (req, res) => {
 router.get("/list", (req, res) => {
     let user = req.user.username;
 
-    Event.find({}).then(events => {
-        res.send(events);
-    });
+    Event.find({})
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(events => {
+            res.send(events);
+        });
 });
 
 // JOIN surf event
@@ -42,12 +45,16 @@ router.post("/:id/attend", (req, res, next) => {
         // if NOT attending yet
         if (!event.attendees.map(el => el.toString()).includes(req.user._id)) {
             Event.findByIdAndUpdate(eventId, { $push: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
                 .then(event => {
                     res.send(event);
                 })
                 .catch(console.error);
         } else {
             Event.findByIdAndUpdate(eventId, { $pull: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
                 .then(event => {
                     res.send(event);
                 })

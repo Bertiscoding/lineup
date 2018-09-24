@@ -9,6 +9,12 @@ body {
     font-family: "Noto Sans JP", sans-serif;
     font-size: 16px;
     color: $color-black;
+
+    button,
+    input,
+    textarea {
+        outline: none;
+    }
 }
 
 // .container {

@@ -7,10 +7,9 @@ import Home from "./Home";
 import Create from "./Create";
 import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
+import SignUp from "./Auth/SignUp";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
-// import Event from "./Components/Event";
-// import Activity from "./Components/Activity";
 
 class Application extends React.Component {
     constructor(props) {
@@ -34,7 +33,8 @@ class Application extends React.Component {
                 <div>
                     <Navigation user={this.state.user} />
                     <Switch>
-                        <Route exact path="/" render={() => <Home user={this.state.user} />} />
+                        {/* <Route exact path="/" render={() => <SignUp />} /> */}
+                        <Route exact path="/dashboard" render={() => <Home user={this.state.user} />} />
                         <Route exact path="/profile" render={() => <Profile user={this.state.user} />} />
                         <Route
                             path="/auth"
@@ -46,20 +46,6 @@ class Application extends React.Component {
                                 />
                             )}
                         />
-                        {/* <Route
-                            exact
-                            path="/event/create"
-                            render={() => (
-                                <Event
-                                    handleInputChange={this._handleInputChange}
-                                    date={this.state.startDate}
-                                    location={this.state.location}
-                                    details={this.state.details}
-                                    setUser={this.props.setUser}
-                                    username={this.state.username}
-                                />
-                            )}
-                        /> */}
 
                         <Route
                             exact
@@ -88,23 +74,7 @@ class Application extends React.Component {
                             )}
                         />
 
-                        {/* <Route
-                            exact
-                            path="/activity/create"
-                            render={() => (
-                                <Activity
-                                    handleInputChange={this._handleInputChange}
-                                    date={this.state.startDate}
-                                    location={this.state.location}
-                                    title={this.state.title}
-                                    details={this.state.details}
-                                    setUser={this.props.setUser}
-                                    username={this.state.username}
-                                />
-                            )}
-                        /> */}
-
-                        <Route exact path="/create" render={() => <Create />} />
+                        <Route exact path="/create" render={() => <Create user={this.state.user} />} />
 
                         <Route component={NotFound} />
                     </Switch>

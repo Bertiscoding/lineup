@@ -38,7 +38,10 @@ class ActivityList extends React.Component {
                     <p>Details: {el.detailActivity}</p>
                     <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
                     <p>Where: {el.location}</p>
-                    <p>Who's going:</p>
+                    <p>
+                        Who's going:
+                        {isAttending && this.state.username}
+                    </p>
                     <p>Initiated by {this.state.username} </p>
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}

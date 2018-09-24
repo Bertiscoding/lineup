@@ -1,5 +1,5 @@
 .home {
-    padding-top: 100px;
+    padding-top: 90px;
     display: flex;
     justify-content: space-around;
 
@@ -10,13 +10,25 @@
     }
 
     &__forecast {
-        width: 49%;
-        padding: 30px;
+        width: 40%;
     }
 
     &__list {
-        width: 49%;
+        width: 60%;
         padding: 30px;
+
+        &-surf,
+        &-activity {
+            height: 380px;
+            border-radius: 7px;
+            overflow: scroll;
+            background-color: $color-white;
+            padding: 0 30px;
+            border: 6px solid $color-white;
+        }
+        &-activity {
+            margin-top: 30px;
+        }
     }
 }
 
@@ -28,5 +40,42 @@
         padding: 20px;
         width: 400px;
         margin-bottom: 30px;
+    }
+}
+
+.icon {
+    &__edit {
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+        fill: $primary-color;
+        color: $primary-color;
+    }
+}
+
+.profile {
+    padding-top: 100px;
+}
+
+.create {
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__event form,
+    &__activity form {
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea,
+        button {
+            margin-top: 30px;
+        }
+    }
+
+    .datepicker {
+        width: 300px;
     }
 }
