@@ -101,7 +101,7 @@ class Activity extends React.Component {
         api.post("/api/activity/create", data)
             .then(result => {
                 // this.props.setUser();
-                this.props.history.push("/");
+                this.props.history.push("/dashboard");
             })
             .catch(error => console.log("something went wrong", error));
     }

@@ -27,7 +27,6 @@ class Event extends React.Component {
                     <DatePicker
                         className="datepicker"
                         selected={this.state.startDate}
-                        // onSelect={this.handleSelect}
                         onChange={this.changeDate}
                         showTimeSelect
                         timeFormat="HH:mm"
@@ -88,7 +87,7 @@ class Event extends React.Component {
 
         api.post("/api/event/create", data)
             .then(result => {
-                this.props.history.push("/");
+                this.props.history.push("/dashboard");
             })
             .catch(error => console.log("something went wrong", error));
     }

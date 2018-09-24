@@ -27,9 +27,12 @@ router.post("/create", (req, res) => {
 router.get("/list", (req, res) => {
     let user = req.user.username;
 
-    Activity.find({}).then(activities => {
-        res.send(activities);
-    });
+    Activity.find({})
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(activities => {
+            res.send(activities);
+        });
 });
 
 // JOIN activity
@@ -41,12 +44,16 @@ router.post("/:id/attend", (req, res, next) => {
         // if NOT attending yet
         if (!activity.attendees.map(el => el.toString()).includes(req.user._id)) {
             Activity.findByIdAndUpdate(activityId, { $push: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
                 .then(activity => {
                     res.send(activity);
                 })
                 .catch(console.error);
         } else {
             Activity.findByIdAndUpdate(activityId, { $pull: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
                 .then(activity => {
                     res.send(activity);
                 })

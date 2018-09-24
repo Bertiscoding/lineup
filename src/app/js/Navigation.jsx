@@ -17,9 +17,13 @@ const Navigation = props => {
 
                 <div className="nav__right">
                     <div>
-                        <Link className="nav__link" to="/create">
-                            <button>Create Event</button>
-                        </Link>
+                        {props.user && (
+                            <span>
+                                <Link className="nav__link" to="/create">
+                                    <button>Create Event</button>
+                                </Link>
+                            </span>
+                        )}
                     </div>
 
                     <div>

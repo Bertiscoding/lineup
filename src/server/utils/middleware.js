@@ -3,7 +3,6 @@ const config = require("../config");
 
 const userMiddleware = (req, res, next) => {
     const authHeader = req.get("Authorization");
-
     if (!authHeader) return next();
     const token = authHeader.split("Bearer ").join("");
     try {

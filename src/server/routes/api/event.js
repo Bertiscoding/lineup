@@ -36,6 +36,38 @@ router.get("/list", (req, res) => {
         });
 });
 
+// filter Events by CREATOR
+router.get("/list/creator", (req, res) => {
+    let user = req.user.username;
+
+    Event.find({ creator: req.user._id })
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(events => {
+            res.send(events);
+        });
+});
+
+// DELETE surf event - first attempt
+router.post("/:id/delete", (req, res) => {
+    const { id } = req.params;
+    Event.findByIdAndRemove(id)
+        .then(result => {
+            res.send(result);
+        })
+        .catch(console.error);
+});
+
+// UPDATE surf event
+router.post("/:id/update", (req, res) => {
+    const { id } = req.params._id;
+    Event.findByIdAndUpdate(id)
+        .then(result => {
+            res.send(result);
+        })
+        .catch(console.error);
+});
+
 // JOIN surf event
 
 router.post("/:id/attend", (req, res, next) => {

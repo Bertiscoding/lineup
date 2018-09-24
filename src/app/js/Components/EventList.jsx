@@ -12,9 +12,11 @@ class EventList extends React.Component {
         this.state = {
             events: [],
             loading: true,
-            attendees: {},
+            attendees: [],
             username: props.user && props.user.username ? props.user.username : ""
         };
+
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -51,19 +53,20 @@ class EventList extends React.Component {
                     </div>
                     <p>Initiated by {el.creator.username} </p>
                     <div>
-                        {/* add edit and delete */}
+                        {/* EDIT and DELETE */}
                         {el.creator._id === this.props.user._id && (
                             <React.Fragment>
-                                <Link to="/" className="icon">
+                                {/* <Link to="/event/edit" className="icon">
                                     <svg className="icon__edit">
                                         <use xlinkHref={`${Icons}#edit`} />
                                     </svg>
-                                </Link>
-                                <Link to="/" className="icon">
+                                </Link> */}
+
+                                <div onClick={() => this.handleDelete(el._id)} className="icon">
                                     <svg className="icon__edit">
                                         <use xlinkHref={`${Icons}#delete-button`} />
                                     </svg>
-                                </Link>
+                                </div>
                             </React.Fragment>
                         )}
                     </div>
@@ -83,6 +86,14 @@ class EventList extends React.Component {
                     if (el._id === data._id) return data;
                     else return el;
                 })
+            });
+        });
+    }
+
+    handleDelete(id) {
+        api.post(`api/event/${id}/delete`).then(data => {
+            this.setState({
+                events: this.state.events.filter(el => el._id !== id)
             });
         });
     }
