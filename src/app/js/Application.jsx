@@ -4,12 +4,13 @@ import jwtDecode from "jwt-decode";
 
 import Auth from "./Auth";
 import Home from "./Home";
+import Create from "./Create";
 import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
-import Event from "./Components/Event";
 import NotFound from "./NotFound";
-import Activity from "./Components/Activity";
 import EventList from "./Components/EventList";
+// import Event from "./Components/Event";
+// import Activity from "./Components/Activity";
 
 class Application extends React.Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class Application extends React.Component {
                                 />
                             )}
                         />
-                        <Route
+                        {/* <Route
                             exact
                             path="/event/create"
                             render={() => (
@@ -58,7 +59,7 @@ class Application extends React.Component {
                                     username={this.state.username}
                                 />
                             )}
-                        />
+                        /> */}
 
                         <Route
                             exact
@@ -68,10 +69,26 @@ class Application extends React.Component {
                                     date={this.state.date}
                                     location={this.state.location}
                                     detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
+                                    username={this.state.username}
                                 />
                             )}
                         />
                         <Route
+                            exact
+                            path="/activity/list"
+                            render={() => (
+                                <ActivityList
+                                    date={this.state.date}
+                                    location={this.state.location}
+                                    detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+
+                        {/* <Route
                             exact
                             path="/activity/create"
                             render={() => (
@@ -85,7 +102,9 @@ class Application extends React.Component {
                                     username={this.state.username}
                                 />
                             )}
-                        />
+                        /> */}
+
+                        <Route exact path="/create" render={() => <Create />} />
 
                         <Route component={NotFound} />
                     </Switch>

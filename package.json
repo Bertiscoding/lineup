@@ -20,6 +20,7 @@
         "chalk": "^2.4.1",
         "cloudinary": "^1.11.0",
         "compression": "^1.7.3",
+        "dotenv": "^6.0.0",
         "express": "^4.16.3",
         "express-fileupload": "^0.4.0",
         "helmet": "^3.13.0",
@@ -45,5 +46,8 @@
         "node-sass": "^4.9.3",
         "parcel-bundler": "^1.9.7",
         "react-hot-loader": "^4.3.7"
+    },
+    "engines": {
+        "node": "8.9.0"
     }
 }

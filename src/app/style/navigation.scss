@@ -1,20 +1,67 @@
-.navigation {
-    background-color: $primary-color;
-}
-
-.nav-content {
+.nav {
+    background-color: $secondary-color;
     display: flex;
-    justify-content: space-between;
-}
+    padding: 20px 30px;
+    position: fixed;
+    width: 100%;
+    box-shadow: $box-shadow-1;
 
-.nav-link {
-    color: #fff;
-
-    &:visited {
+    button {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 7px;
+        border: 2px solid #ffffff;
+        background-color: transparent;
         color: #fff;
+        font-size: 16px;
+        box-shadow: $box-shadow-1;
+
+        cursor: pointer;
+        transition: all 0.4s;
+    }
+    button:hover {
+        background-color: $primary-color;
     }
 
-    &:hover {
+    &__content {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__left {
+        display: flex;
+    }
+
+    &__logo {
+        img {
+            width: 120px;
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    &__link {
         color: #fff;
+        margin-right: 50px;
+        text-decoration: none;
+    }
+    &__icon {
+        width: 40px;
+        height: 40px;
+        fill: #fff;
+        color: #fff;
+
+        transition: all 0.4s;
+
+        &:hover {
+            background-color: $primary-color;
+            padding: 5px;
+            border-radius: 7px;
+        }
     }
 }

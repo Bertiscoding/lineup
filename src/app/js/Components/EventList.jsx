@@ -10,34 +10,17 @@ class EventList extends React.Component {
         this.state = {
             events: [],
             loading: true,
-            attendees: []
+            attendees: [],
+            username: props.user && props.user.username ? props.user.username : ""
         };
     }
 
-    // api
-    // .get(
-    //   `/api/event/list${
-    //     this.props.match.params.username
-    //       ? `/${this.props.match.params.username}`
-    //       : ""
-    //   }`
-    // )
-    // .then(data => {
-    //   console.log(data);
-    //   this.setState({
-    //     posts: data.posts,
-    //     user: data.user,
-    //     loading: false
-    //   });
-    // });
-
     componentDidMount() {
         api.get("/api/event/list").then(events => {
-            console.log(events[0].attendees);
             this.setState({
                 events: events,
-                loading: false
-                // set attending state here?
+                loading: false,
+                attendees: events.attendees
             });
         });
     }
@@ -46,37 +29,36 @@ class EventList extends React.Component {
         if (this.state.loading) {
             return <div>loading.....</div>;
         }
-        // const isAttending = this.props.event.attendees.includes(
-        //     this.state.user._id
-        // );
 
-        const mappedEvents = this.state.events.map(el => {
+        const mappedEvents = this.state.events.map((el, index) => {
+            const isAttending = this.props.user && el.attendees.includes(this.props.user._id);
+
             return (
-                <div className="event" key={el._id}>
-                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
+                <div className="event__card" key={el._id}>
+                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")}</p>
                     <p>Where: {el.location}</p>
                     <p>Details: {el.detailEvent}</p>
                     <p>Who's going:</p>
-
-                    {/* {this.state.user._id}
-                    {this.props.user._id !== this.state.user._id && (
-                        <button onClick={e => this.handleJoinClick(e, this.state.user.username)}>
-                            {isAttending ? "Cancel" : "Join"}
-                        </button>
-                    )} */}
-                    <hr />
+                    <p>Initiated by {this.state.username} </p>
+                    <button onClick={() => this.handleJoinClick(el._id)}>
+                        {isAttending ? "Cancel" : "Join"}
+                    </button>
                 </div>
             );
         });
         return <div className="event-list">{mappedEvents}</div>;
     }
 
-    // handleJoinClick(e, isAttending) {
-    //     api.post(`/api/event/${_id}/attend`).then(data => {
-    //         localStorage.setItem("identity", data.token);
-    //         this.props.setUser();
-    //     });
-    // }
+    handleJoinClick(eventId) {
+        api.post(`/api/event/${eventId}/attend`).then(data => {
+            this.setState({
+                events: this.state.events.map(el => {
+                    if (el._id === data._id) return data;
+                    else return el;
+                })
+            });
+        });
+    }
 }
 
 export default withRouter(EventList);
