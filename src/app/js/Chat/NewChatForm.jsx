@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-class SendMessageForm extends React.Component {
+class NewChatForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: ""
+            roomName: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -12,32 +12,29 @@ class SendMessageForm extends React.Component {
     render() {
         return (
             <div>
-                <form className="chat__sendForm" onSubmit={this.handleSubmit}>
+                <form className="chat__newChat" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         onChange={this.handleChange}
-                        value={this.state.message}
-                        placeholder="Type your message and hit ENTER"
+                        value={this.state.roomName}
+                        placeholder="new chat"
                     />
+                    <button type="submit">+</button>
                 </form>
             </div>
         );
     }
 
-    // update input field
     handleChange(e) {
         this.setState({
-            message: e.target.value
+            roomName: e.target.value
         });
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.sendMessage(this.state.message);
-        this.setState({
-            message: "" // clear input field after submit
-        });
+        this.props.createRoom(this.state.roomName);
     }
 }
 
-export default SendMessageForm;
+export default NewChatForm;

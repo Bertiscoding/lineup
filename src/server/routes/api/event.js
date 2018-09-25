@@ -36,6 +36,16 @@ router.get("/list", (req, res) => {
         });
 });
 
+// show only ONE event
+router.get("/:id", (req, res) => {
+    Event.findById(req.params.id)
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(event => {
+            res.send(event);
+        });
+});
+
 // filter Events by CREATOR
 router.get("/list/creator", (req, res) => {
     // let user = req.user.username;
@@ -48,7 +58,7 @@ router.get("/list/creator", (req, res) => {
         });
 });
 
-// DELETE surf event - first attempt
+// DELETE surf event
 router.post("/:id/delete", (req, res) => {
     const { id } = req.params;
     Event.findByIdAndRemove(id)
@@ -60,10 +70,14 @@ router.post("/:id/delete", (req, res) => {
 
 // UPDATE surf event
 router.post("/:id/update", (req, res) => {
-    const { id } = req.params._id;
-    Event.findByIdAndUpdate(id)
+    const id = req.params.id;
+    let { event, date, location, detailEvent } = req.body;
+    Event.findByIdAndUpdate(id, { date, location, detailEvent }, { new: true })
         .then(result => {
-            res.send(result);
+            res.send({
+                success: true,
+                result
+            });
         })
         .catch(console.error);
 });

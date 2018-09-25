@@ -41,16 +41,16 @@ class ActivityList extends React.Component {
                     <p>Details: {el.detailActivity}</p>
                     <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
                     <p>Where: {el.location}</p>
-                    <p>
-                        <div>
+                    <div>
+                        <span>
                             Who's going:
                             <ul>
                                 {el.attendees.map(el => {
                                     return <li key={el._id}>{el.username}</li>;
                                 })}
                             </ul>
-                        </div>
-                    </p>
+                        </span>
+                    </div>
                     <p>Initiated by {el.creator.username} </p>
                     <div>
                         {/* EDIT and DELETE */}

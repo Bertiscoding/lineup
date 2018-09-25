@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -9,7 +10,7 @@ class Event extends React.Component {
         super(props);
 
         this.state = {
-            startDate: moment(),
+            date: moment(),
             location: undefined,
             detailEvent: undefined,
             username: props.user && props.user.username ? props.user.username : ""
@@ -26,7 +27,7 @@ class Event extends React.Component {
                 <form onSubmit={this._submitData}>
                     <DatePicker
                         className="datepicker"
-                        selected={this.state.startDate}
+                        selected={this.state.date}
                         onChange={this.changeDate}
                         showTimeSelect
                         timeFormat="HH:mm"
@@ -74,7 +75,7 @@ class Event extends React.Component {
     // setState only for date
     changeDate(date) {
         this.setState({
-            startDate: date
+            date: date
         });
     }
 
@@ -83,14 +84,14 @@ class Event extends React.Component {
     // }
 
     _submitData(e) {
-        const data = { ...this.state, date: this.state.startDate };
+        const data = { ...this.state, date: this.state.date };
 
         api.post("/api/event/create", data)
             .then(result => {
-                this.props.history.push("/dashboard");
+                this.props.history.push("/profile");
             })
             .catch(error => console.log("something went wrong", error));
     }
 }
 
-export default Event;
+export default withRouter(Event);

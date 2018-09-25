@@ -10,6 +10,7 @@ import Profile from "./Components/Profile";
 import SignUp from "./Auth/SignUp";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
+import EditEvent from "./Components/EditEvent";
 import Chat from "./Chat/Chat";
 
 class Application extends React.Component {
@@ -75,6 +76,20 @@ class Application extends React.Component {
                         />
                         <Route
                             exact
+                            path="/event/:id/update"
+                            render={({ match }) => (
+                                <EditEvent
+                                    params={match.params}
+                                    date={this.state.date}
+                                    location={this.state.location}
+                                    detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
                             path="/activity/list"
                             render={() => (
                                 <ActivityList
@@ -87,7 +102,7 @@ class Application extends React.Component {
                             )}
                         />
 
-                        <Route exact path="/conversation" render={() => <Chat />} />
+                        <Route exact path="/chatroom" render={() => <Chat />} />
 
                         <Route exact path="/create" render={() => <Create user={this.state.user} />} />
 

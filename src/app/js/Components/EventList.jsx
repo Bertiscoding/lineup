@@ -56,11 +56,11 @@ class EventList extends React.Component {
                         {/* EDIT and DELETE */}
                         {el.creator._id === this.props.user._id && (
                             <React.Fragment>
-                                {/* <Link to="/event/edit" className="icon">
+                                <Link to={`/event/${el._id}/update`} className="icon">
                                     <svg className="icon__edit">
                                         <use xlinkHref={`${Icons}#edit`} />
                                     </svg>
-                                </Link> */}
+                                </Link>
 
                                 <div onClick={() => this.handleDelete(el._id)} className="icon">
                                     <svg className="icon__edit">

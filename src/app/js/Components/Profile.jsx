@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import EventList from "./EventList";
+import { Link, Redirect } from "react-router-dom";
 import api from "../utils/api";
 import moment from "moment";
 
@@ -27,7 +26,6 @@ class Profile extends Component {
                 loading: false
             });
         });
-        console.log("EVENTS", this.state.events);
     }
 
     render() {
@@ -52,16 +50,24 @@ class Profile extends Component {
                 <div className="profile__events">
                     {this.state.events.map(el => {
                         return (
-                            <div>
+                            <div key={el._id}>
                                 <hr />
                                 <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")} </p>
                                 <p>Where: {el.location}</p>
                                 <p>Details: {el.detailEvent}</p>
-                                <div onClick={() => this.handleDelete(el._id)} className="icon">
-                                    <svg className="icon__edit">
-                                        <use xlinkHref={`${Icons}#delete-button`} />
-                                    </svg>
-                                </div>
+                                <React.Fragment>
+                                    <Link to={`/event/${el._id}/update`} className="icon">
+                                        <svg className="icon__edit">
+                                            <use xlinkHref={`${Icons}#edit`} />
+                                        </svg>
+                                    </Link>
+
+                                    <div onClick={() => this.handleDelete(el._id)} className="icon">
+                                        <svg className="icon__edit">
+                                            <use xlinkHref={`${Icons}#delete-button`} />
+                                        </svg>
+                                    </div>
+                                </React.Fragment>
                             </div>
                         );
                     })}
