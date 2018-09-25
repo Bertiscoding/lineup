@@ -15,6 +15,7 @@ class SendMessageForm extends React.Component {
                 <form className="chat__sendForm" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
+                        disabled={this.props.disabled} // disables inputfield until you join a chat
                         onChange={this.handleChange}
                         value={this.state.message}
                         placeholder="Type your message and hit ENTER"

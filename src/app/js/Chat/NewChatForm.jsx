@@ -14,10 +14,10 @@ class NewChatForm extends React.Component {
             <div>
                 <form className="chat__newChat" onSubmit={this.handleSubmit}>
                     <input
-                        type="text"
                         onChange={this.handleChange}
                         value={this.state.roomName}
-                        placeholder="new chat"
+                        type="text"
+                        placeholder="Start a new chat"
                     />
                     <button type="submit">+</button>
                 </form>
@@ -34,6 +34,9 @@ class NewChatForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.createRoom(this.state.roomName);
+        this.setState({
+            roomName: ""
+        });
     }
 }
 

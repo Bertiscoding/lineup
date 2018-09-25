@@ -58,8 +58,8 @@ class Chat extends React.Component {
                     rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
                     roomId={this.state.roomId}
                 />
-                <MessageList messages={this.state.messages} />
-                <SendMessageForm sendMessage={this.sendMessage} />
+                <MessageList messages={this.state.messages} roomId={this.state.roomId} />
+                <SendMessageForm sendMessage={this.sendMessage} disabled={!this.state.roomId} />
                 <NewChatForm createRoom={this.createRoom} />
             </div>
         );
