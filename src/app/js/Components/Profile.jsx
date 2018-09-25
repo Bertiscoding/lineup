@@ -38,20 +38,6 @@ class Profile extends Component {
         console.log("props", this.props);
         if (!this.props.user) return <Redirect to="/auth/sign-in" />; // this is actually the protection
 
-        const mappedEvents = this.state.events.map((el, index) => {
-            <div className="profile__events" key={index}>
-                <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")} </p>
-                <p>Where: {el.location}</p>
-                <p>Details: {el.detailEvent}</p>
-
-                <div onClick={() => this.handleDelete(el._id)} className="icon">
-                    <svg className="icon__edit">
-                        <use xlinkHref={`${Icons}#delete-button`} />
-                    </svg>
-                </div>
-            </div>;
-        });
-
         return (
             <div>
                 <div className="profile">
@@ -64,8 +50,21 @@ class Profile extends Component {
                 </div>
 
                 <div className="profile__events">
-                    {mappedEvents}
-                    {/* <pre>{JSON.stringify(this.state.events, null, 2)}</pre> */}
+                    {this.state.events.map(el => {
+                        return (
+                            <div>
+                                <hr />
+                                <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")} </p>
+                                <p>Where: {el.location}</p>
+                                <p>Details: {el.detailEvent}</p>
+                                <div onClick={() => this.handleDelete(el._id)} className="icon">
+                                    <svg className="icon__edit">
+                                        <use xlinkHref={`${Icons}#delete-button`} />
+                                    </svg>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         );
