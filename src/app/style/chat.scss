@@ -1,0 +1,10 @@
+.chat {
+    padding-top: 100px;
+
+    &__sendForm {
+        input {
+            width: 300px;
+            padding: 20px;
+        }
+    }
+}

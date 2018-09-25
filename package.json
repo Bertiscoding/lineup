@@ -14,6 +14,8 @@
     "author": "Lukas Gisder-Dubé",
     "license": "ISC",
     "dependencies": {
+        "@pusher/chatkit": "^0.7.17",
+        "@pusher/chatkit-server": "^0.12.2",
         "axios": "^0.18.0",
         "bcrypt": "^3.0.0",
         "body-parser": "^1.18.3",
@@ -29,6 +31,7 @@
         "moment": "^2.22.2",
         "mongoose": "^5.2.14",
         "morgan": "^1.9.1",
+        "pusher-platform-node": "~0.14.0",
         "react": "^16.5.1",
         "react-datepicker": "^1.6.0",
         "react-dom": "^16.5.0",

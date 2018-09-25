@@ -10,6 +10,7 @@ import Profile from "./Components/Profile";
 import SignUp from "./Auth/SignUp";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
+import Chat from "./Chat/Chat";
 
 class Application extends React.Component {
     constructor(props) {
@@ -41,10 +42,10 @@ class Application extends React.Component {
                             render={() => (
                                 <Profile
                                     user={this.state.user}
-                                    // date={this.state.date}
-                                    // location={this.state.location}
-                                    // detailEvent={this.state.detailEvent}
                                     username={this.state.username}
+                                    date={this.state.date}
+                                    location={this.state.location}
+                                    detailEvent={this.state.detailEvent}
                                 />
                             )}
                         />
@@ -85,6 +86,8 @@ class Application extends React.Component {
                                 />
                             )}
                         />
+
+                        <Route exact path="/conversation" render={() => <Chat />} />
 
                         <Route exact path="/create" render={() => <Create user={this.state.user} />} />
 

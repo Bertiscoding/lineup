@@ -38,7 +38,7 @@ router.get("/list", (req, res) => {
 
 // filter Events by CREATOR
 router.get("/list/creator", (req, res) => {
-    let user = req.user.username;
+    // let user = req.user.username;
 
     Event.find({ creator: req.user._id })
         .populate("attendees", "username")

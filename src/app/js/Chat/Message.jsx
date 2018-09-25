@@ -1,0 +1,14 @@
+import React from "react";
+
+class Message extends React.Component {
+    render() {
+        return (
+            <div>
+                {this.props.username}
+                {this.props.text}
+            </div>
+        );
+    }
+}
+
+export default Message;
