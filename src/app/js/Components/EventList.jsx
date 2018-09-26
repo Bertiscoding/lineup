@@ -41,7 +41,7 @@ class EventList extends React.Component {
             // if(el.isEditing) return <Edit event={el}></Edit>
             return (
                 <div className="event__card" key={el._id}>
-                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")}</p>
+                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
                     <p>Where: {el.location}</p>
                     <p>Details: {el.detailEvent}</p>
                     <div>
@@ -86,14 +86,11 @@ class EventList extends React.Component {
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}
                     </button>
-                    <Comment eventId={el._id} comments={el.comment} />
+                    <Comment eventId={el._id} comment={el.comment} />
                 </div>
             );
         });
         return <div className="event-list">{mappedEvents}</div>;
-        <div>
-            <h4>Conversation:</h4>
-        </div>;
     }
 
     handleJoinClick(eventId) {

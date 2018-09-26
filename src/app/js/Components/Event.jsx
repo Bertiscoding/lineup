@@ -79,10 +79,6 @@ class Event extends React.Component {
         });
     }
 
-    // onClickOutside(evt) {
-    //     // function
-    // }
-
     _submitData(e) {
         e.preventDefault();
         const data = { ...this.state, date: this.state.date };
