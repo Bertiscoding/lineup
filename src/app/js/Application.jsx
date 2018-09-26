@@ -12,7 +12,6 @@ import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
 import EditEvent from "./Components/EditEvent";
 import EditActivity from "./Components/EditActivity";
-import Chat from "./Chat/Chat";
 
 // import SignUp from "./Auth/SignUp";
 
@@ -106,12 +105,6 @@ class Application extends React.Component {
                                     username={this.state.username}
                                 />
                             )}
-                        />
-
-                        <Route
-                            exact
-                            path="/chatroom"
-                            render={() => <Chat user={this.state.user} username={this.state.username} />}
                         />
 
                         <Route exact path="/create" render={() => <Create user={this.state.user} />} />

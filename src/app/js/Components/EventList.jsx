@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 import moment from "moment";
+import Comment from "./Comment";
 import Icons from "../../assets/images/sprite.svg";
 
 class EventList extends React.Component {
@@ -10,10 +11,10 @@ class EventList extends React.Component {
         super(props);
 
         this.state = {
+            username: props.user && props.user.username ? props.user.username : "",
             events: [],
             loading: true,
-            attendees: [],
-            username: props.user && props.user.username ? props.user.username : ""
+            attendees: []
         };
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -85,10 +86,14 @@ class EventList extends React.Component {
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}
                     </button>
+                    <Comment eventId={el._id} comments={el.comment} />
                 </div>
             );
         });
         return <div className="event-list">{mappedEvents}</div>;
+        <div>
+            <h4>Conversation:</h4>
+        </div>;
     }
 
     handleJoinClick(eventId) {

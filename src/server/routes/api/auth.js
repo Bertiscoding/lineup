@@ -56,15 +56,12 @@ router.post("/sign-in", (req, res) => {
 });
 
 // CREATE FULL PROFILE
-// http://localhost:3000/api/auth/newuser
 
 router.post("/newuser", checkLoggedIn, (req, res) => {
     const { username, age, description, skilllevel } = req.body;
-    console.log(req.body);
+
     const p = req.files && req.files.picture ? upload(req.files.picture) : Promise.resolve(undefined);
     p.then(pictureUrl => {
-        console.log("PICTURE URL", pictureUrl);
-
         const updateData = {
             username,
             age,

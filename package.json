@@ -14,8 +14,6 @@
     "author": "Lukas Gisder-Dubé",
     "license": "ISC",
     "dependencies": {
-        "@pusher/chatkit": "^0.7.17",
-        "@pusher/chatkit-server": "^0.12.2",
         "axios": "^0.18.0",
         "bcrypt": "^3.0.0",
         "body-parser": "^1.18.3",

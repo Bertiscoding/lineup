@@ -12,7 +12,8 @@ router.post("/create", (req, res) => {
         creator: req.user._id,
         detailEvent,
         location,
-        date
+        date,
+        comment
     })
         .save()
         .then(event => {
@@ -29,6 +30,7 @@ router.get("/list", (req, res) => {
     Event.find({})
         .populate("attendees", "username")
         .populate("creator", "username")
+        .populate("comment.user", "username")
         .sort({ date: 1 })
         .then(events => {
             res.send(events);
@@ -50,6 +52,7 @@ router.get("/list/creator", (req, res) => {
     Event.find({ creator: req.user._id })
         .populate("attendees", "username")
         .populate("creator", "username")
+        .populate("comment.user", "username")
         .then(events => {
             res.send(events);
         });
@@ -104,6 +107,20 @@ router.post("/:id/attend", (req, res, next) => {
                 .catch(console.error);
         }
     });
+});
+
+router.post("/:id/chat", (req, res) => {
+    let id = req.params.id;
+
+    Event.findByIdAndUpdate(
+        id,
+        { $push: { comment: { user: req.user._id, content: req.body.comment } } },
+        { new: true }
+    )
+        .then(comment => {
+            res.send(comment);
+        })
+        .catch(console.error);
 });
 
 module.exports = router;
