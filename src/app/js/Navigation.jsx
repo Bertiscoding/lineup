@@ -8,7 +8,7 @@ const Navigation = props => {
         <div className="nav">
             <div className="container nav__content">
                 <div className="nav__left">
-                    <Link className="nav__link" to="/">
+                    <Link className="nav__link" to="/dashboard">
                         <div className="nav__logo">
                             <img src={Logo} alt="logo-lineup" />
                         </div>
@@ -17,9 +17,13 @@ const Navigation = props => {
 
                 <div className="nav__right">
                     <div>
-                        <Link className="nav__link" to="/create">
-                            <button>Create Event</button>
-                        </Link>
+                        {props.user && (
+                            <span>
+                                <Link className="nav__link" to="/create">
+                                    <button>Create Event</button>
+                                </Link>
+                            </span>
+                        )}
                     </div>
 
                     <div>

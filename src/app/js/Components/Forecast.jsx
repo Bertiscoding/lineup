@@ -3,17 +3,7 @@ import React from "react";
 //STATELESS component:
 const Forecast = props => (
     <div>
-        {/* IF STATEMENT: if PLACE-input returns true, then render out <p> 
-
-        {props.spot && (
-            <p>
-                Location:&nbsp;
-                <span>{props.spot}</span>
-            </p>
-        )}
-        */}
-
-        {props.chart && <img src="{props.chart}" alt="" />}
+        {props.chart && <img src={props.chart} alt="" width="200px" />}
 
         {props.temperature && (
             <p>

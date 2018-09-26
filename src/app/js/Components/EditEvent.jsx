@@ -5,15 +5,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import api from "../utils/api";
 
-class Activity extends React.Component {
+class EditEvent extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            date: moment(),
+            event: {},
+            date: undefined,
             location: undefined,
-            detailActivity: undefined,
-            title: undefined,
+            detailEvent: undefined,
+
             username: props.user && props.user.username ? props.user.username : ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -21,39 +22,25 @@ class Activity extends React.Component {
         this._submitData = this._submitData.bind(this);
     }
 
+    componentDidMount() {
+        console.log("cdm", this.props);
+        api.get(`/api/event/${this.props.params.id}`).then(event => {
+            this.setState({
+                date: moment(event.date, "YYYY-MM-DDTHH:mm"),
+                location: event.location,
+                detailEvent: event.detailEvent
+            });
+        });
+    }
+
     render() {
         return (
-            <div className="create__activity">
-                <h1>No swell? No sorrow!</h1>
+            <div className="create__event">
+                <h2>Edit your surf session:</h2>
                 <form onSubmit={this._submitData}>
-                    <input
-                        type="text"
-                        name="title"
-                        value={this.state.title}
-                        onChange={evt => this.handleChange("title", evt.target.value)}
-                        placeholder="title"
-                    />
-
-                    <textarea
-                        type="text"
-                        name="detailActivity"
-                        placeholder="More information..."
-                        value={this.state.detailActivity}
-                        onChange={evt => this.handleChange("detailActivity", evt.target.value)}
-                    />
-
-                    <input
-                        type="text"
-                        name="location"
-                        placeholder="What is the place or address?"
-                        value={this.state.location}
-                        onChange={evt => this.handleChange("location", evt.target.value)}
-                    />
-
                     <DatePicker
                         className="datepicker"
                         selected={this.state.date}
-                        // onSelect={this.handleSelect}
                         onChange={this.changeDate}
                         showTimeSelect
                         timeFormat="HH:mm"
@@ -71,7 +58,22 @@ class Activity extends React.Component {
                         dateFormat="LLL"
                     />
 
-                    <button onClick={this._submitData}>Let's do it!</button>
+                    <input
+                        type="text"
+                        name="location"
+                        // placeholder="Place/Break"
+                        value={this.state.location}
+                        onChange={evt => this.handleChange("location", evt.target.value)}
+                    />
+                    <textarea
+                        type="text"
+                        name="detailEvent"
+                        // placeholder="More information..."
+                        value={this.state.detailEvent}
+                        onChange={evt => this.handleChange("detailEvent", evt.target.value)}
+                    />
+
+                    <button type="submit">Let's go surfing</button>
                 </form>
             </div>
         );
@@ -83,29 +85,30 @@ class Activity extends React.Component {
         });
     }
 
-    // setState only for date
     changeDate(date) {
         this.setState({
             date: date
         });
     }
 
-    // onClickOutside(evt) {
-    //     // function
-    // }
-
     _submitData(e) {
         e.preventDefault();
-        const data = { ...this.state, date: this.state.date };
-        console.log("data : ", data);
 
-        api.post("/api/activity/create", data)
+        const data = { ...this.state, date: this.state.date };
+
+        api.post(`/api/event/${this.props.params.id}/update`, data)
             .then(result => {
-                // this.props.setUser();
+                this.setState({
+                    event: {
+                        date: this.state.date,
+                        location: this.state.location,
+                        detailEvent: this.state.detailEvent
+                    }
+                });
                 this.props.history.push("/dashboard");
             })
             .catch(error => console.log("something went wrong", error));
     }
 }
 
-export default withRouter(Activity);
+export default withRouter(EditEvent);

@@ -29,6 +29,7 @@
         "moment": "^2.22.2",
         "mongoose": "^5.2.14",
         "morgan": "^1.9.1",
+        "pusher-platform-node": "~0.14.0",
         "react": "^16.5.1",
         "react-datepicker": "^1.6.0",
         "react-dom": "^16.5.0",

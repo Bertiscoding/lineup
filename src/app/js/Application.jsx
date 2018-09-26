@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 import Auth from "./Auth";
@@ -7,10 +7,13 @@ import Home from "./Home";
 import Create from "./Create";
 import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
+import User from "./Components/User";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
-// import Event from "./Components/Event";
-// import Activity from "./Components/Activity";
+import EditEvent from "./Components/EditEvent";
+import EditActivity from "./Components/EditActivity";
+
+// import SignUp from "./Auth/SignUp";
 
 class Application extends React.Component {
     constructor(props) {
@@ -34,8 +37,15 @@ class Application extends React.Component {
                 <div>
                     <Navigation user={this.state.user} />
                     <Switch>
-                        <Route exact path="/" render={() => <Home user={this.state.user} />} />
-                        <Route exact path="/profile" render={() => <Profile user={this.state.user} />} />
+                        <Route exact path="/" render={() => <Redirect to="/auth/sign-up" />} />
+                        <Route exact path="/dashboard" render={() => <Home user={this.state.user} />} />
+                        <Route
+                            exact
+                            path="/profile"
+                            render={() => (
+                                <Profile user={this.state.user} username={this.state.username} />
+                            )}
+                        />
                         <Route
                             path="/auth"
                             render={() => (
@@ -46,29 +56,20 @@ class Application extends React.Component {
                                 />
                             )}
                         />
-                        {/* <Route
-                            exact
-                            path="/event/create"
-                            render={() => (
-                                <Event
-                                    handleInputChange={this._handleInputChange}
-                                    date={this.state.startDate}
-                                    location={this.state.location}
-                                    details={this.state.details}
-                                    setUser={this.props.setUser}
-                                    username={this.state.username}
-                                />
-                            )}
-                        /> */}
 
                         <Route
                             exact
                             path="/event/list"
                             render={() => (
-                                <EventList
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
+                                <EventList user={this.state.user} username={this.state.username} />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/event/:id/update"
+                            render={({ match }) => (
+                                <EditEvent
+                                    params={match.params}
                                     user={this.state.user}
                                     username={this.state.username}
                                 />
@@ -78,33 +79,35 @@ class Application extends React.Component {
                             exact
                             path="/activity/list"
                             render={() => (
-                                <ActivityList
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
+                                <ActivityList user={this.state.user} username={this.state.username} />
+                            )}
+                        />
+
+                        <Route
+                            exact
+                            path="/activity/:id/update"
+                            render={({ match }) => (
+                                <EditActivity
+                                    params={match.params}
                                     user={this.state.user}
                                     username={this.state.username}
                                 />
                             )}
                         />
 
-                        {/* <Route
+                        <Route
                             exact
-                            path="/activity/create"
-                            render={() => (
-                                <Activity
-                                    handleInputChange={this._handleInputChange}
-                                    date={this.state.startDate}
-                                    location={this.state.location}
-                                    title={this.state.title}
-                                    details={this.state.details}
-                                    setUser={this.props.setUser}
+                            path="/user/:id"
+                            render={({ match }) => (
+                                <User
+                                    params={match.params}
+                                    user={this.state.user}
                                     username={this.state.username}
                                 />
                             )}
-                        /> */}
+                        />
 
-                        <Route exact path="/create" render={() => <Create />} />
+                        <Route exact path="/create" render={() => <Create user={this.state.user} />} />
 
                         <Route component={NotFound} />
                     </Switch>

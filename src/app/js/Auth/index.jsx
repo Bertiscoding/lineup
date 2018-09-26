@@ -9,7 +9,6 @@ import NewUser from "./NewUser";
 import Logout from "./Logout";
 import SignIn from "./SignIn";
 import NotFound from "../NotFound";
-import Event from "../Components/Event";
 
 class Auth extends Component {
     constructor(props) {
@@ -106,7 +105,7 @@ class Auth extends Component {
                 localStorage.setItem("identity", data.token);
                 this.props.setUser();
                 if (type === "up") return this.props.history.push(`newuser/`);
-                else return this.props.history.push("/");
+                else return this.props.history.push("/dashboard");
             })
             .catch(err => {
                 this.setState({

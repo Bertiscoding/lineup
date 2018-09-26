@@ -1,0 +1,46 @@
+.sign {
+    padding-top: 100px;
+
+    h1 {
+        color: $primary-color;
+    }
+
+    input {
+        border: none;
+        font-size: 16px;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 2px solid $primary-color;
+    }
+
+    &__in {
+        padding: 100px 30px 30px 30px;
+    }
+}
+
+.btn {
+    &__main {
+        margin-top: 50xp;
+        border: none;
+        background-color: $primary-color;
+        padding: 10px 30px;
+        border-radius: 7px;
+        font-size: 16px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.icon {
+    &__main {
+        fill: #ffffff;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+}
+
+// text-decoration: underline;
+// text-decoration-style: wavy;

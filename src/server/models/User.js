@@ -16,7 +16,7 @@ const userSchema = new Schema({
     age: Number,
     profilePicture: {
         type: String,
-        default: "/images/shirt_octi2.jpg"
+        default: "/images/linup_PH.jpg"
     },
     description: String,
     skilllevel: String,

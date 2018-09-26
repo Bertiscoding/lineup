@@ -1,44 +1,24 @@
 import React from "react";
 import Event from "./Components/Event";
-import { withRouter } from "react-router";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Activity from "./Components/Activity";
 
-class Create extends React.Component {
-    render() {
-        return (
-            <Switch>
-                <Route
-                    exact
-                    path="/event/create"
-                    render={() => (
-                        <Event
-                            handleInputChange={this._handleInputChange}
-                            date={this.state.startDate}
-                            location={this.state.location}
-                            details={this.state.details}
-                            setUser={this.props.setUser}
-                            username={this.state.username}
-                        />
-                    )}
-                />
+import { Route, withRouter, Redirect } from "react-router-dom";
 
-                <Route
-                    exact
-                    path="/activity/create"
-                    render={() => (
-                        <Activity
-                            handleInputChange={this._handleInputChange}
-                            date={this.state.startDate}
-                            location={this.state.location}
-                            title={this.state.title}
-                            details={this.state.details}
-                            setUser={this.props.setUser}
-                            username={this.state.username}
-                        />
-                    )}
-                />
-            </Switch>
+class Create extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        if (!this.props.user) {
+            return <Redirect to="/auth/sign-in" />;
+        }
+
+        return (
+            <div className="create">
+                <Event />
+
+                <Activity />
+            </div>
         );
     }
 }

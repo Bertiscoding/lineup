@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Icons from "./../../assets/images/sprite.svg";
 
 class SignUp extends React.Component {
     componentDidMount() {
@@ -35,6 +36,9 @@ class SignUp extends React.Component {
 
                 <Link to="/auth/newuser">
                     <button className="button" onClick={() => this.props.sign("up")}>
+                        <svg className="icon__edit">
+                            <use xlinkHref={`${Icons}#cool`} />
+                        </svg>
                         Sign Up
                     </button>
                 </Link>

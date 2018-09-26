@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Activity = require("../../models/Activity");
 
-// CREATE SURF EVENT
+// CREATE Activity
 router.post("/create", (req, res) => {
     const { title, detailActivity, date, location } = req.body;
 
@@ -27,28 +27,78 @@ router.post("/create", (req, res) => {
 router.get("/list", (req, res) => {
     let user = req.user.username;
 
-    Activity.find({}).then(activities => {
-        res.send(activities);
-    });
+    Activity.find({})
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(activities => {
+            res.send(activities);
+        });
+});
+
+// show only ONE activity
+router.get("/:id", (req, res) => {
+    Activity.findById(req.params.id)
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(activity => {
+            res.send(activity);
+        });
+});
+
+// filter activity by CREATOR
+router.get("/list/creator", (req, res) => {
+    Activity.find({ creator: req.user._id })
+        .populate("attendees", "username")
+        .populate("creator", "username")
+        .then(activities => {
+            res.send(activities);
+        });
+});
+
+// DELETE activity
+router.post("/:id/delete", (req, res) => {
+    const { id } = req.params;
+    Activity.findByIdAndRemove(id)
+        .then(result => {
+            res.send(result);
+        })
+        .catch(console.error);
+});
+
+// UPDATE activity
+router.post("/:id/update", (req, res) => {
+    const id = req.params.id;
+    let { activity, date, location, title, detailActivity } = req.body;
+    Activity.findByIdAndUpdate(id, { date, location, title, detailActivity }, { new: true })
+        .then(result => {
+            res.send({
+                success: true,
+                result
+            });
+        })
+        .catch(console.error);
 });
 
 // JOIN activity
-
 router.post("/:id/attend", (req, res, next) => {
     let activityId = req.params.id;
 
-    Event.findById(activityId).then(event => {
+    Activity.findById(activityId).then(activity => {
         // if NOT attending yet
-        if (!event.attendees.map(el => el.toString()).includes(req.user._id)) {
-            Event.findByIdAndUpdate(eventId, { $push: { attendees: req.user._id } }, { new: true })
-                .then(event => {
-                    res.send(event);
+        if (!activity.attendees.map(el => el.toString()).includes(req.user._id)) {
+            Activity.findByIdAndUpdate(activityId, { $push: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
+                .then(activity => {
+                    res.send(activity);
                 })
                 .catch(console.error);
         } else {
-            Event.findByIdAndUpdate(activityId, { $pull: { attendees: req.user._id } }, { new: true })
-                .then(event => {
-                    res.send(event);
+            Activity.findByIdAndUpdate(activityId, { $pull: { attendees: req.user._id } }, { new: true })
+                .populate("attendees", "username")
+                .populate("creator", "username")
+                .then(activity => {
+                    res.send(activity);
                 })
                 .catch(console.error);
         }
