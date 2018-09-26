@@ -48,12 +48,22 @@ class EventList extends React.Component {
                             Who's going:
                             <ul>
                                 {el.attendees.map(el => {
-                                    return <li key={el._id}>{el.username}</li>;
+                                    return (
+                                        <Link key={el._id} to={`/user/${el._id}`}>
+                                            <p>{el.username} </p>
+                                        </Link>
+                                    );
                                 })}
                             </ul>
                         </span>
                     </div>
-                    <p>Initiated by {el.creator.username} </p>
+                    <p>
+                        Initiated by
+                        <Link to={`/user/${el.creator._id}`}>
+                            <span>{el.creator.username} </span>
+                        </Link>
+                    </p>
+
                     <div>
                         {/* EDIT and DELETE */}
                         {el.creator._id === this.props.user._id && (

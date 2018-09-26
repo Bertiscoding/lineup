@@ -9,8 +9,6 @@ class Profile extends Component {
     constructor(props) {
         super(props);
 
-        console.log("PROPS", this.props);
-
         this.state = {
             events: [],
             loading: true

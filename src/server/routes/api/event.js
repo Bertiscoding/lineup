@@ -29,6 +29,7 @@ router.get("/list", (req, res) => {
     Event.find({})
         .populate("attendees", "username")
         .populate("creator", "username")
+        .sort({ date: 1 })
         .then(events => {
             res.send(events);
         });

@@ -3,7 +3,7 @@ import React from "react";
 //STATELESS component:
 const Forecast = props => (
     <div>
-        {props.chart && <img src="{props.chart}" alt="" />}
+        {props.chart && <img src={props.chart} alt="" width="200px" />}
 
         {props.temperature && (
             <p>

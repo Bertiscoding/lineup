@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 import Auth from "./Auth";
@@ -7,6 +7,7 @@ import Home from "./Home";
 import Create from "./Create";
 import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
+import User from "./Components/User";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
 import EditEvent from "./Components/EditEvent";
@@ -37,19 +38,13 @@ class Application extends React.Component {
                 <div>
                     <Navigation user={this.state.user} />
                     <Switch>
-                        {/* <Route exact path="/" render={() => <SignUp />} /> */}
+                        <Route exact path="/" render={() => <Redirect to="/auth/sign-up" />} />
                         <Route exact path="/dashboard" render={() => <Home user={this.state.user} />} />
                         <Route
                             exact
                             path="/profile"
                             render={() => (
-                                <Profile
-                                    user={this.state.user}
-                                    username={this.state.username}
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
-                                />
+                                <Profile user={this.state.user} username={this.state.username} />
                             )}
                         />
                         <Route
@@ -67,13 +62,7 @@ class Application extends React.Component {
                             exact
                             path="/event/list"
                             render={() => (
-                                <EventList
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
-                                    user={this.state.user}
-                                    username={this.state.username}
-                                />
+                                <EventList user={this.state.user} username={this.state.username} />
                             )}
                         />
                         <Route
@@ -82,9 +71,6 @@ class Application extends React.Component {
                             render={({ match }) => (
                                 <EditEvent
                                     params={match.params}
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
                                     user={this.state.user}
                                     username={this.state.username}
                                 />
@@ -94,13 +80,7 @@ class Application extends React.Component {
                             exact
                             path="/activity/list"
                             render={() => (
-                                <ActivityList
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    detailEvent={this.state.detailEvent}
-                                    user={this.state.user}
-                                    username={this.state.username}
-                                />
+                                <ActivityList user={this.state.user} username={this.state.username} />
                             )}
                         />
 
@@ -110,10 +90,18 @@ class Application extends React.Component {
                             render={({ match }) => (
                                 <EditActivity
                                     params={match.params}
-                                    date={this.state.date}
-                                    location={this.state.location}
-                                    title={this.state.title}
-                                    detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            exact
+                            path="/user/:id"
+                            render={({ match }) => (
+                                <User
+                                    params={match.params}
                                     user={this.state.user}
                                     username={this.state.username}
                                 />

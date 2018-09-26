@@ -9,6 +9,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [],
             spot: undefined,
             country: undefined,
             chart: undefined,
@@ -38,6 +39,7 @@ class Home extends React.Component {
             if (spot) {
                 // setState here, coz using SCOPE 'const=data'
                 this.setState({
+                    data: data,
                     spot: data.spot,
                     chart: data[0].charts.swell, //https://hist-1.msw.ms/wave/750/4-1537401600-1.gif
                     temperature: data[0].condition.temperature,
@@ -75,6 +77,13 @@ class Home extends React.Component {
             <div className="home">
                 <div className="home__forecast">
                     <h1>Check out the forecast</h1>
+                    {/* {this.state.data.map((el, index) => {
+                        if(index > 2) return null
+                        return (
+                            // el.irgendwas und für jedes wahrscheinlich einen <Forecast /> zurückgeben
+                        )
+                    })} */}
+
                     <form onSubmit={this.getForecast}>
                         <select
                             name="spot"

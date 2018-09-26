@@ -84,6 +84,7 @@ class Event extends React.Component {
     // }
 
     _submitData(e) {
+        e.preventDefault();
         const data = { ...this.state, date: this.state.date };
 
         api.post("/api/event/create", data)

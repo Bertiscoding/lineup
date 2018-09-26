@@ -100,6 +100,7 @@ class Chat extends React.Component {
             .catch(err => console.log("error at subscribe to room", err));
     }
 
+    // all chats
     getRooms() {
         this.currentUser
             .getJoinableRooms()
@@ -112,6 +113,7 @@ class Chat extends React.Component {
             .catch(err => console.log("error in joinable rooms", err));
     }
 
+    // new chat
     createRoom(roomName) {
         console.log("NEW ROOM:", roomName);
         this.currentUser
@@ -121,6 +123,17 @@ class Chat extends React.Component {
             .then(room => this.subscribeToRoom(room.id))
             .catch(err => console.log("error in createRoom", err));
     }
+
+    // new chat user
+    // chatkit.createUser({
+    //     id: 'userId',
+    //     name: 'Some name',
+    //   })
+    //     .then(() => {
+    //       console.log('User created successfully');
+    //     }).catch((err) => {
+    //       console.log(err);
+    //     });
 }
 
 export default Chat;
