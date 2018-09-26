@@ -26,8 +26,6 @@ router.post("/create", (req, res) => {
 // DISPLAY SURF EVENT
 
 router.get("/list", (req, res) => {
-    let user = req.user.username;
-
     Event.find({})
         .populate("attendees", "username")
         .populate("creator", "username")
@@ -48,8 +46,6 @@ router.get("/:id", (req, res) => {
 
 // filter Events by CREATOR
 router.get("/list/creator", (req, res) => {
-    // let user = req.user.username;
-
     Event.find({ creator: req.user._id })
         .populate("attendees", "username")
         .populate("creator", "username")

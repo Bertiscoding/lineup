@@ -15,6 +15,8 @@ class ActivityList extends React.Component {
             attendees: [],
             username: props.user && props.user.username ? props.user.username : ""
         };
+
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -56,16 +58,16 @@ class ActivityList extends React.Component {
                         {/* EDIT and DELETE */}
                         {el.creator._id === this.props.user._id && (
                             <React.Fragment>
-                                <Link to="/activity/edit" className="icon">
+                                <Link to={`/activity/${el._id}/update`} className="icon">
                                     <svg className="icon__edit">
                                         <use xlinkHref={`${Icons}#edit`} />
                                     </svg>
                                 </Link>
-                                <Link to="/activity/delete" className="icon">
+                                <div onClick={() => this.handleDelete(el._id)} className="icon">
                                     <svg className="icon__edit">
                                         <use xlinkHref={`${Icons}#delete-button`} />
                                     </svg>
-                                </Link>
+                                </div>
                             </React.Fragment>
                         )}
                     </div>
@@ -86,6 +88,14 @@ class ActivityList extends React.Component {
                     if (el._id === data._id) return data;
                     else return el;
                 })
+            });
+        });
+    }
+
+    handleDelete(id) {
+        api.post(`api/activity/${id}/delete`).then(data => {
+            this.setState({
+                activities: this.state.activities.filter(el => el._id !== id)
             });
         });
     }

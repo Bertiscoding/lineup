@@ -7,11 +7,13 @@ import Home from "./Home";
 import Create from "./Create";
 import Navigation from "./Navigation";
 import Profile from "./Components/Profile";
-import SignUp from "./Auth/SignUp";
 import NotFound from "./NotFound";
 import EventList from "./Components/EventList";
 import EditEvent from "./Components/EditEvent";
+import EditActivity from "./Components/EditActivity";
 import Chat from "./Chat/Chat";
+
+// import SignUp from "./Auth/SignUp";
 
 class Application extends React.Component {
     constructor(props) {
@@ -102,7 +104,27 @@ class Application extends React.Component {
                             )}
                         />
 
-                        <Route exact path="/chatroom" render={() => <Chat />} />
+                        <Route
+                            exact
+                            path="/activity/:id/update"
+                            render={({ match }) => (
+                                <EditActivity
+                                    params={match.params}
+                                    date={this.state.date}
+                                    location={this.state.location}
+                                    title={this.state.title}
+                                    detailEvent={this.state.detailEvent}
+                                    user={this.state.user}
+                                    username={this.state.username}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            exact
+                            path="/chatroom"
+                            render={() => <Chat user={this.state.user} username={this.state.username} />}
+                        />
 
                         <Route exact path="/create" render={() => <Create user={this.state.user} />} />
 

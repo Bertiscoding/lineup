@@ -44,12 +44,14 @@ class EventList extends React.Component {
                     <p>Where: {el.location}</p>
                     <p>Details: {el.detailEvent}</p>
                     <div>
-                        Who's going:
-                        <ul>
-                            {el.attendees.map(el => {
-                                return <li key={el._id}>{el.username}</li>;
-                            })}
-                        </ul>
+                        <span>
+                            Who's going:
+                            <ul>
+                                {el.attendees.map(el => {
+                                    return <li key={el._id}>{el.username}</li>;
+                                })}
+                            </ul>
+                        </span>
                     </div>
                     <p>Initiated by {el.creator.username} </p>
                     <div>
