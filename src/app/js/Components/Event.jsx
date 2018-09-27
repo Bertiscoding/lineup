@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import api from "../utils/api";
 
+import Icons from "../../assets/images/sprite.svg";
+
 class Event extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,7 @@ class Event extends React.Component {
     render() {
         return (
             <div className="create__event">
-                <h2>Create a surf session:</h2>
+                <h2>Create a surf event:</h2>
                 <form onSubmit={this._submitData}>
                     <DatePicker
                         className="datepicker"
@@ -55,12 +57,17 @@ class Event extends React.Component {
                     <textarea
                         type="text"
                         name="detailEvent"
-                        placeholder="More information..."
+                        placeholder="Add some details..."
                         value={this.state.detailEvent}
                         onChange={evt => this.handleChange("detailEvent", evt.target.value)}
                     />
 
-                    <button onClick={this._submitData}>Let's go surfing</button>
+                    <button onClick={this._submitData} className="btn btn__full">
+                        <svg className="icon__main">
+                            <use xlinkHref={`${Icons}#cool`} />
+                        </svg>
+                        Let's go surfing
+                    </button>
                 </form>
             </div>
         );

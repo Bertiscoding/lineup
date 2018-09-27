@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import api from "../utils/api";
 
+import Icons from "./../../assets/images/sprite.svg";
+
 class Activity extends React.Component {
     constructor(props) {
         super(props);
@@ -23,8 +25,8 @@ class Activity extends React.Component {
 
     render() {
         return (
-            <div className="create__activity">
-                <h1>No swell? No sorrow!</h1>
+            <div className="create__event">
+                <h2>Create an activity:</h2>
                 <form onSubmit={this._submitData}>
                     <input
                         type="text"
@@ -71,7 +73,12 @@ class Activity extends React.Component {
                         dateFormat="LLL"
                     />
 
-                    <button onClick={this._submitData}>Let's do it!</button>
+                    <button onClick={this._submitData} className="btn btn__full">
+                        <svg className="icon__main">
+                            <use xlinkHref={`${Icons}#cool`} />
+                        </svg>
+                        Let's do it!
+                    </button>
                 </form>
             </div>
         );
@@ -89,10 +96,6 @@ class Activity extends React.Component {
             date: date
         });
     }
-
-    // onClickOutside(evt) {
-    //     // function
-    // }
 
     _submitData(e) {
         e.preventDefault();

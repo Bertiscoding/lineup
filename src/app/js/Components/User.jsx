@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import api from "../utils/api";
-import moment from "moment";
-
-import Icons from "../../assets/images/sprite.svg";
-
-let style = {
-    padding: "100px"
-};
 
 class User extends Component {
     constructor(props) {
@@ -38,15 +31,25 @@ class User extends Component {
         if (!this.props.user) return <Redirect to="/auth/sign-in" />;
 
         return (
-            <div style={style}>
-                <span>Hello, User</span>
-                <div className="user__profile">
-                    <img src={this.state.profilePicture} alt="" width="250px" />
-                    <br />
-                    <p>Name: {this.state.username}</p>
-                    <p>Age: {this.state.age} </p>
-                    <p>Fun fact: {this.state.description}</p>
-                    <p>You usually find me around the {this.state.skilllevel} of the lineup.</p>
+            <div className="user">
+                <div className="user__img">
+                    <img src={this.state.profilePicture} alt="" />
+                </div>
+                <div className="user__about">
+                    <p className="profile__info-name">{this.state.username}</p>
+                    <p>
+                        <span>About: </span>
+                        {this.state.description}
+                    </p>
+                    <p>
+                        <span>Age: </span>
+                        {this.state.age}{" "}
+                    </p>
+                    <p>
+                        You usually find me around the
+                        <span> {this.state.skilllevel} </span>
+                        of the lineup.
+                    </p>
                 </div>
             </div>
         );

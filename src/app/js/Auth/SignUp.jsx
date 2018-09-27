@@ -10,45 +10,62 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>Sign Up</h1>
-                <input
-                    type="email"
-                    value={this.props.email}
-                    onChange={evt => this.props.handleInputChange("email", evt.target.value)}
-                    className="input"
-                    placeholder="E-Mail"
-                />
-                <br />
-                <br />
-                <input
-                    type="password"
-                    value={this.props.password}
-                    onChange={evt => this.props.handleInputChange("password", evt.target.value)}
-                    className="input"
-                    placeholder="Password"
-                />
+            <div>
+                <div className="sign sign__in">
+                    <div className="sign__in-card">
+                        <h1>Sign Up</h1>
+                        <input
+                            type="email"
+                            value={this.props.email}
+                            onChange={evt => this.props.handleInputChange("email", evt.target.value)}
+                            className="input"
+                            placeholder="E-Mail"
+                        />
+                        <br />
+                        <br />
+                        <input
+                            type="password"
+                            value={this.props.password}
+                            onChange={evt => this.props.handleInputChange("password", evt.target.value)}
+                            className="input"
+                            placeholder="Password"
+                        />
 
-                {/* here was the picture upload */}
+                        <br />
+                        <br />
 
-                <br />
-                <br />
+                        <button className="btn btn__full" onClick={() => this.props.sign("up")}>
+                            <Link to="/auth/newuser">
+                                <svg className="icon__edit">
+                                    <use xlinkHref={`${Icons}#cool`} />
+                                </svg>
+                                Sign Up
+                            </Link>
+                        </button>
+                        <br />
 
-                <Link to="/auth/newuser">
-                    <button className="button" onClick={() => this.props.sign("up")}>
-                        <svg className="icon__edit">
-                            <use xlinkHref={`${Icons}#cool`} />
-                        </svg>
-                        Sign Up
-                    </button>
-                </Link>
-                <br />
-                <br />
-                <p>{this.props.error}</p>
-                <div className="separator" />
-                <Link className="link" to="/auth/sign-in">
-                    Do you have an account already? Sign in instead!
-                </Link>
+                        <p>{this.props.error}</p>
+                        <div className="sign__instead">
+                            <Link className="link" to="/auth/sign-in">
+                                Got an account already? Sign in instead!
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="sign__up-copy">
+                    <p>
+                        <span>Lineup</span> is an app that connects surfers all over the world. Just
+                        sign-up and see all the upcoming surf sessions and other activities in your area.
+                        Simply join one, or create your own session. And if there are no waves, don't
+                        worry: Just initiate another activity, like board and wet suit repairs, going for
+                        coffee or watching surf movies together. A great way to make some new friends
+                        with like-minded people who whare the same deep passion for surfing like you do.
+                    </p>
+                    <div className="sign__up-copy-img">
+                        <img src="./../../assets/images/li-logo-white-01.png" alt="" />
+                    </div>
+                </div>
             </div>
         );
     }

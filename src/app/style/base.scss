@@ -18,10 +18,42 @@ body {
     }
 }
 
-// .container {
-//     padding: 25px calc((100vw - 960px) / 2);
+.icon {
+    display: inline;
+    &__edit {
+        width: 17px;
+        height: 17px;
+        margin-right: 20px;
+        fill: $primary-color;
+    }
 
-//     @media (max-width: 980px) {
-//         padding: 25px 10px;
-//     }
-// }
+    &__edit:hover {
+        fill: $secondary-color;
+    }
+}
+
+////// 404
+.fourohfour {
+    margin-top: 0;
+    background-image: url("./../assets/images/404_drawing.jpg");
+    background-size: 500px;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+    h1 {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        color: $secondary-color;
+        font-size: 300px;
+    }
+}
+
+#credit p {
+    text-align: center;
+    font-size: 10px !important;
+    padding: 10px 0;
+}

@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import api from "../utils/api";
 
+import Icons from "../../assets/images/sprite.svg";
+
 class EditEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -35,46 +37,52 @@ class EditEvent extends React.Component {
 
     render() {
         return (
-            <div className="create__event">
+            <div className="edit">
                 <h2>Edit your surf session:</h2>
-                <form onSubmit={this._submitData}>
-                    <DatePicker
-                        className="datepicker"
-                        selected={this.state.date}
-                        onChange={this.changeDate}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        injectTimes={[
-                            moment()
-                                .hours(0)
-                                .minutes(1),
-                            moment()
-                                .hours(12)
-                                .minutes(5),
-                            moment()
-                                .hours(23)
-                                .minutes(59)
-                        ]}
-                        dateFormat="LLL"
-                    />
+                <div className="edit__form">
+                    <form onSubmit={this._submitData}>
+                        <DatePicker
+                            className="datepicker"
+                            selected={this.state.date}
+                            onChange={this.changeDate}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            injectTimes={[
+                                moment()
+                                    .hours(0)
+                                    .minutes(1),
+                                moment()
+                                    .hours(12)
+                                    .minutes(5),
+                                moment()
+                                    .hours(23)
+                                    .minutes(59)
+                            ]}
+                            dateFormat="LLL"
+                        />
 
-                    <input
-                        type="text"
-                        name="location"
-                        // placeholder="Place/Break"
-                        value={this.state.location}
-                        onChange={evt => this.handleChange("location", evt.target.value)}
-                    />
-                    <textarea
-                        type="text"
-                        name="detailEvent"
-                        // placeholder="More information..."
-                        value={this.state.detailEvent}
-                        onChange={evt => this.handleChange("detailEvent", evt.target.value)}
-                    />
+                        <input
+                            type="text"
+                            name="location"
+                            // placeholder="Place/Break"
+                            value={this.state.location}
+                            onChange={evt => this.handleChange("location", evt.target.value)}
+                        />
+                        <textarea
+                            type="text"
+                            name="detailEvent"
+                            value={this.state.detailEvent}
+                            onChange={evt => this.handleChange("detailEvent", evt.target.value)}
+                        />
 
-                    <button type="submit">Let's go surfing</button>
-                </form>
+                        <button type="submit" className="btn btn__full">
+                            <svg className="icon__main">
+                                <use xlinkHref={`${Icons}#cool`} />
+                            </svg>
+                            Update
+                        </button>
+                    </form>
+                </div>
             </div>
         );
     }
