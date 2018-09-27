@@ -40,57 +40,74 @@ class EventList extends React.Component {
                 this.props.user && el.attendees.find(attendee => this.props.user._id === attendee._id);
             // if(el.isEditing) return <Edit event={el}></Edit>
             return (
-                <div className="event__card" key={el._id}>
-                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
-                    <p>Where: {el.location}</p>
-                    <p>Details: {el.detailEvent}</p>
+                <div className="list__event-card" key={el._id}>
                     <div>
-                        <span>
-                            Who's going:
-                            <ul>
-                                {el.attendees.map(el => {
-                                    return (
-                                        <Link key={el._id} to={`/user/${el._id}`}>
-                                            <li>{el.username} </li>
+                        <div className="list__event-card-join">
+                            <p className="list__event-card-date">
+                                {moment(el.date).format("DD.MM.YYYY, HH:mm")}
+                            </p>
+                            <button className="btn__full" onClick={() => this.handleJoinClick(el._id)}>
+                                <svg className="icon__edit">
+                                    <use xlinkHref={`${Icons}#cool`} />
+                                </svg>
+                                {isAttending ? "Cancel" : "Join"}
+                            </button>
+                        </div>
+
+                        <p>
+                            Where: <span>{el.location}</span>
+                        </p>
+                        <p>
+                            Note: <span>{el.detailEvent}</span>
+                        </p>
+                        <div>
+                            <p>
+                                Who's going:
+                                <span className="list__event-card-attendee">
+                                    {el.attendees.map(el => {
+                                        return (
+                                            <Link key={el._id} to={`/user/${el._id}`}>
+                                                {el.username}
+                                            </Link>
+                                        );
+                                    })}
+                                </span>
+                            </p>
+                        </div>
+                        <div className="list__event-card-creator">
+                            <p>
+                                Initiated by
+                                <span>
+                                    <Link to={`/user/${el.creator._id}`}>{el.creator.username}</Link>
+                                </span>
+                            </p>
+
+                            {/* EDIT and DELETE */}
+                            <span>
+                                {el.creator._id === this.props.user._id && (
+                                    <React.Fragment>
+                                        <Link to={`/event/${el._id}/update`} className="icon">
+                                            <svg className="icon__edit">
+                                                <use xlinkHref={`${Icons}#edit`} />
+                                            </svg>
                                         </Link>
-                                    );
-                                })}
-                            </ul>
-                        </span>
-                    </div>
-                    <p>
-                        Initiated by
-                        <Link to={`/user/${el.creator._id}`}>
-                            <span>{el.creator.username} </span>
-                        </Link>
-                    </p>
 
-                    <div>
-                        {/* EDIT and DELETE */}
-                        {el.creator._id === this.props.user._id && (
-                            <React.Fragment>
-                                <Link to={`/event/${el._id}/update`} className="icon">
-                                    <svg className="icon__edit">
-                                        <use xlinkHref={`${Icons}#edit`} />
-                                    </svg>
-                                </Link>
-
-                                <div onClick={() => this.handleDelete(el._id)} className="icon">
-                                    <svg className="icon__edit">
-                                        <use xlinkHref={`${Icons}#delete-button`} />
-                                    </svg>
-                                </div>
-                            </React.Fragment>
-                        )}
+                                        <div onClick={() => this.handleDelete(el._id)} className="icon">
+                                            <svg className="icon__edit">
+                                                <use xlinkHref={`${Icons}#delete-button`} />
+                                            </svg>
+                                        </div>
+                                    </React.Fragment>
+                                )}
+                            </span>
+                        </div>
+                        <br />
+                        <CommentEvent eventId={el._id} comment={el.comment} />
                     </div>
-                    <button onClick={() => this.handleJoinClick(el._id)}>
-                        {isAttending ? "Cancel" : "Join"}
-                    </button>
-                    <CommentEvent eventId={el._id} comment={el.comment} />
                 </div>
             );
         });
-        return <div className="event-list">{mappedEvents}</div>;
+        return <div>{mappedEvents}</div>;
     }
 
     handleJoinClick(eventId) {

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 import api from "../utils/api";
-import moment from "moment";
-import Icons from "../../assets/images/sprite.svg";
 
 class CommentEvent extends React.Component {
     constructor(props) {
@@ -21,27 +18,30 @@ class CommentEvent extends React.Component {
     render() {
         let commentList = this.state.comment.map(el => {
             return (
-                <div key={el._id}>
-                    <p>{el.user.username}</p>
-                    <p>{el.content}</p>
+                <div key={el._id} className="comment__list-entry">
+                    <p className="comment__name">{el.user.username}</p>
+                    <p className="comment__content">{el.content}</p>
                 </div>
             );
         });
         return (
-            <div>
-                <div>{commentList}</div>
-                <br />
-                <h4>comment:</h4>
-                <form onSubmit={this.submitComment}>
-                    <input
-                        type="text"
-                        name="comment"
-                        value={this.state.newComment}
-                        placeholder="Your message for the group chat"
-                        onChange={evt => this.inputChangeHandler("newComment", evt.target.value)}
-                    />
-                    <button type="submit">Add that new comment, britney</button>
-                </form>
+            <div className="comment">
+                <h4>Group chat:</h4>
+                <div className="comment__list">{commentList}</div>
+                <div className="comment__form">
+                    <form onSubmit={this.submitComment}>
+                        <input
+                            type="text"
+                            name="comment"
+                            value={this.state.newComment}
+                            placeholder="Your message..."
+                            onChange={evt => this.inputChangeHandler("newComment", evt.target.value)}
+                        />
+                        <button type="submit" className="btn__ghost">
+                            Say it, lil grom
+                        </button>
+                    </form>
+                </div>
             </div>
         );
     }
@@ -56,8 +56,8 @@ class CommentEvent extends React.Component {
         evt.preventDefault();
         api.post(`/api/event/${this.props.eventId}/chat`, { comment: this.state.newComment }).then(
             res => {
-                console.log(comment);
-                this.setState({ comment: [...this.state.comment, res.comment] });
+                console.log(res);
+                this.setState({ comment: res.comment });
             }
         );
         this.setState({

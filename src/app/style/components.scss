@@ -1,55 +1,14 @@
-.home {
-    padding-top: 90px;
-    display: flex;
-    justify-content: space-around;
-
-    h1 {
-        font-weight: 600;
-        font-size: 230%;
-        color: $primary-color;
-    }
-
-    &__forecast {
-        width: 40%;
-    }
-
-    &__list {
-        width: 60%;
-        padding: 30px;
-
-        &-surf,
-        &-activity {
-            height: 380px;
-            border-radius: 7px;
-            overflow: scroll;
-            background-color: $color-white;
-            padding: 0 30px;
-            border: 6px solid $color-white;
-        }
-        &-activity {
-            margin-top: 30px;
-        }
-    }
-}
-
-.event {
-    &__card {
-        background-color: #fff;
-        border-radius: 7px;
-        box-shadow: $box-shadow-1;
-        padding: 20px;
-        width: 400px;
-        margin-bottom: 30px;
-    }
-}
-
 .icon {
+    display: inline;
     &__edit {
-        width: 20px;
-        height: 20px;
+        width: 17px;
+        height: 17px;
         margin-right: 20px;
         fill: $primary-color;
-        color: $primary-color;
+    }
+
+    &__edit:hover {
+        fill: $secondary-color;
     }
 }
 
