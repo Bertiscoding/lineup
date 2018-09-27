@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 import api from "../utils/api";
-import moment from "moment";
-import Icons from "../../assets/images/sprite.svg";
 
 class CommentEvent extends React.Component {
     constructor(props) {

@@ -55,7 +55,7 @@ class EventList extends React.Component {
                         </div>
 
                         <p>
-                            Where: <span>{el.location}</span>{" "}
+                            Where: <span>{el.location}</span>
                         </p>
                         <p>
                             Note: <span>{el.detailEvent}</span>
@@ -101,13 +101,13 @@ class EventList extends React.Component {
                                 )}
                             </span>
                         </div>
-
+                        <br />
                         <CommentEvent eventId={el._id} comment={el.comment} />
                     </div>
                 </div>
             );
         });
-        return <div className="event-list">{mappedEvents}</div>;
+        return <div>{mappedEvents}</div>;
     }
 
     handleJoinClick(eventId) {

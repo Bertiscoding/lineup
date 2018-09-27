@@ -52,6 +52,7 @@ router.get("/list/creator", (req, res) => {
     Activity.find({ creator: req.user._id })
         .populate("attendees", "username")
         .populate("creator", "username")
+        .populate("comment.user", "username")
         .then(activities => {
             res.send(activities);
         });
@@ -118,6 +119,7 @@ router.post("/:id/chat", (req, res) => {
         },
         { new: true }
     )
+        .populate("comment.user", "username")
         .then(comment => {
             res.send(comment);
         })

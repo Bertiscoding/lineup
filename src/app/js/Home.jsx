@@ -71,52 +71,63 @@ class Home extends React.Component {
         }
         return (
             <div className="home">
-                <div className="home__forecast">
-                    {/* {this.state.data.map((el, index) => {
+                <div className="home__bg">
+                    <div className="home__container">
+                        <div className="home__forecast">
+                            {/* {this.state.data.map((el, index) => {
                         if(index > 2) return null
                         return (
                             // el.irgendwas und für jedes wahrscheinlich einen <Forecast /> zurückgeben
                         )
-                    })} */}
-                    <div className="forecast__form">
-                        <h1>Check out the forecast:</h1>
-                        <form onSubmit={this.getForecast}>
-                            <select
-                                name="spot"
-                                value={this.state.spot}
-                                onChange={evt => this._inputChangeHandler("spot", evt.target.value)}
-                            >
-                                <option disabled key="n" selected={true}>
-                                    Choose a surf spot
-                                </option>
-                                <option value="88">Jeffery's Bay, South Africa</option>
-                                <option value="224">Punta Blanca K16, Tenerife</option>
-                            </select>
+                        })} */}
+                            <div className="forecast__form">
+                                <h1>Check out the forecast:</h1>
+                                <form onSubmit={this.getForecast}>
+                                    <select
+                                        name="spot"
+                                        value={this.state.spot}
+                                        onChange={evt =>
+                                            this._inputChangeHandler("spot", evt.target.value)
+                                        }
+                                    >
+                                        <option disabled key="n" selected={true}>
+                                            Choose a surf spot
+                                        </option>
+                                        <option value="88">Jeffery's Bay, South Africa</option>
+                                        <option value="224">Punta Blanca K16, Tenerife</option>
+                                    </select>
 
-                            <button type="submit" className="btn__ghost">
-                                See surf forecast
-                            </button>
-                        </form>
+                                    <button type="submit" className="btn__ghost">
+                                        See surf forecast
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div className="forecast__container">
+                            <Forecast
+                                spot={this.state.spot}
+                                country={this.state.country}
+                                chart={this.state.chart}
+                                temperature={this.state.temperature}
+                                minHeight={this.state.minHeight}
+                                maxHeight={this.state.maxHeight}
+                                wave={this.state.wave}
+                                waveHeight={this.state.waveHeight}
+                                wavePeriod={this.state.wavePeriod}
+                                wind={this.state.wind}
+                                windSpeed={this.state.windSpeed}
+                                error={this.state.error}
+                            />
+                        </div>
                     </div>
                 </div>
-                <Forecast
-                    spot={this.state.spot}
-                    country={this.state.country}
-                    chart={this.state.chart}
-                    temperature={this.state.temperature}
-                    minHeight={this.state.minHeight}
-                    maxHeight={this.state.maxHeight}
-                    wave={this.state.wave}
-                    waveHeight={this.state.waveHeight}
-                    wavePeriod={this.state.wavePeriod}
-                    wind={this.state.wind}
-                    windSpeed={this.state.windSpeed}
-                    error={this.state.error}
-                />
 
                 <div className="list">
-                    <div className="list__event">
-                        <h1>Let's go surfing</h1>
+                    <div className="list__event" id="home-left">
+                        <h1>
+                            Let's go surfing! <br /> Join or create and event:
+                        </h1>
                         <EventList
                             location={this.state.location}
                             date={this.state.date}
@@ -124,7 +135,7 @@ class Home extends React.Component {
                             user={this.props.user}
                         />
                     </div>
-                    <div className="list__activity">
+                    <div className="list__event">
                         <h1>
                             No swell? No sorrow! <br /> Here are some more activities:
                         </h1>

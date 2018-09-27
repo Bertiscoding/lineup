@@ -1,6 +1,20 @@
 .home {
+    &__bg {
+        background-image: url("./../assets/images/home_bg1.jpg");
+        background-position: center top;
+        background-size: cover;
+        padding: 80px 50px 90px 50px;
+        width: 100%;
+    }
+
+    &__container {
+        margin-top: 100px;
+        background-color: $color-white;
+        border-radius: 7px;
+    }
+
     &__forecast {
-        padding: 130px 50px 50px 50px;
+        padding: 0 30px;
         display: flex;
         justify-content: space-between;
 
@@ -14,7 +28,7 @@
 
         form {
             display: flex;
-            background-color: $color-white;
+            // background-color: $color-white;
 
             select {
                 font-size: 20px;
@@ -37,7 +51,6 @@
     .forecast__form {
         background-color: $color-white;
         width: 100%;
-        margin-top: 30px;
         padding: 20px;
         border-radius: 7px;
         display: flex;
@@ -53,7 +66,8 @@
 .forecast__result {
     width: 90%;
     margin-left: 5%;
-    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 7px;
     display: flex;
     justify-content: space-between;
 
@@ -87,33 +101,35 @@
     }
 }
 
+#home-left {
+    border-right: 1px solid $primary-color;
+}
+
 .list {
     display: flex;
     justify-content: space-around;
-    padding: 40px 0;
-    background-color: $color-white;
+    padding: 20px 0;
+    // background-color: $color-white;
+    background-color: rgba(218, 213, 220, 0.3);
 
     &__event {
         width: 49%;
-        border-right: 1px solid $primary-color;
 
         h1 {
-            font-weight: 600;
-            font-size: 200%;
+            font-weight: 100;
+            font-size: 220%;
             margin-left: 60px;
             margin-bottom: 40px;
             color: $primary-color;
         }
 
         &-card {
-            width: 90%;
+            width: 98%;
             background-color: #fff;
             border-radius: 7px;
             box-shadow: $box-shadow-1;
-            padding: 40px;
+            padding: 20px;
             margin-bottom: 30px;
-            height: 500px;
-            overflow: scroll;
             font-weight: 500;
 
             display: flex;
@@ -127,7 +143,7 @@
 
                 p {
                     font-size: 150%;
-                    font-weight: 100;
+                    font-weight: 600;
                 }
 
                 .btn__full {
@@ -166,6 +182,7 @@
                 justify-content: space-between;
                 align-items: baseline;
             }
+
             &-creator a {
                 text-decoration: none;
                 color: $secondary-color;
