@@ -19,8 +19,10 @@ $box-shadow-1: 0 3px 10px rgba(46, 70, 94, 0.692);
 // }
 
 @import "./base.scss";
+@import "./sign.scss";
+
+@import "./button.scss";
 
 @import "./components.scss";
 @import "./navigation.scss";
-@import "./sign.scss";
-@import "./chat.scss";
+@import "./dashboard.scss";

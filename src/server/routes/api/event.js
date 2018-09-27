@@ -12,8 +12,7 @@ router.post("/create", (req, res) => {
         creator: req.user._id,
         detailEvent,
         location,
-        date,
-        comment
+        date
     })
         .save()
         .then(event => {
@@ -118,8 +117,9 @@ router.post("/:id/chat", (req, res) => {
         { $push: { comment: { user: req.user._id, content: req.body.comment } } },
         { new: true }
     )
-        .then(comment => {
-            res.send(comment);
+        .populate("comment.user", "username")
+        .then(event => {
+            res.send(event);
         })
         .catch(console.error);
 });

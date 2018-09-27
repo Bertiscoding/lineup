@@ -11,8 +11,7 @@ router.post("/create", (req, res) => {
         title,
         detailActivity,
         date,
-        location,
-        comment
+        location
     })
         .save()
         .then(act => {

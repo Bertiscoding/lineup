@@ -85,7 +85,7 @@ class Event extends React.Component {
 
         api.post("/api/event/create", data)
             .then(result => {
-                this.props.history.push("/profile");
+                this.props.history.push("/dashboard");
             })
             .catch(error => console.log("something went wrong", error));
     }
