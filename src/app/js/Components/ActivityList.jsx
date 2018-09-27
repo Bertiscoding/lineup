@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 import moment from "moment";
+import CommentActivity from "./CommentActivity";
 import Icons from "../../assets/images/sprite.svg";
 
 class ActivityList extends React.Component {
@@ -10,17 +11,17 @@ class ActivityList extends React.Component {
         super(props);
 
         this.state = {
+            username: props.user && props.user.username ? props.user.username : "",
             activities: [],
             loading: true,
-            attendees: [],
-            username: props.user && props.user.username ? props.user.username : ""
+            attendees: []
         };
 
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
-        // this is what was send from backend
+        // send from backend:
         api.get("api/activity/list").then(activities => {
             this.setState({
                 activities: activities,
@@ -38,7 +39,7 @@ class ActivityList extends React.Component {
             const isAttending =
                 this.props.user && el.attendees.find(attendee => this.props.user._id === attendee._id);
             return (
-                <div key={el._id}>
+                <div className="event__card" key={el._id}>
                     <p>{el.title}</p>
                     <p>Details: {el.detailActivity}</p>
                     <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
@@ -48,12 +49,22 @@ class ActivityList extends React.Component {
                             Who's going:
                             <ul>
                                 {el.attendees.map(el => {
-                                    return <li key={el._id}>{el.username}</li>;
+                                    return (
+                                        <Link key={el._id} to={`/user/${el._id}`}>
+                                            <li>{el.username} </li>
+                                        </Link>
+                                    );
                                 })}
                             </ul>
                         </span>
                     </div>
-                    <p>Initiated by {el.creator.username} </p>
+                    <p>
+                        Initiated by
+                        <Link to={`/user/${el.creator._id}`}>
+                            <span>{el.creator.username} </span>
+                        </Link>
+                    </p>
+
                     <div>
                         {/* EDIT and DELETE */}
                         {el.creator._id === this.props.user._id && (
@@ -75,10 +86,12 @@ class ActivityList extends React.Component {
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}
                     </button>
+
+                    <CommentActivity activityId={el._id} comment={el.comment} />
                 </div>
             );
         });
-        return <div>{mappedActivities}</div>;
+        return <div className="event-list">{mappedActivities}</div>;
     }
 
     handleJoinClick(activityId) {

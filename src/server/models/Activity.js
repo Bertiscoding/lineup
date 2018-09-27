@@ -8,7 +8,14 @@ const activitySchema = new Schema({
     date: Date,
     attendees: [{ type: Schema.Types.String, ref: "User" }],
     creator: { type: Schema.Types.String, ref: "User" },
-    location: String
+    location: String,
+    comment: [
+        {
+            user: { type: Schema.Types.ObjectId, ref: "User" },
+            content: String
+            // date: Date,
+        }
+    ]
 });
 
 module.exports = mongoose.model("Activity", activitySchema);

@@ -12,6 +12,7 @@ const eventSchema = new Schema({
         {
             user: { type: Schema.Types.ObjectId, ref: "User" },
             content: String
+            // date: Date,
         }
     ]
 });

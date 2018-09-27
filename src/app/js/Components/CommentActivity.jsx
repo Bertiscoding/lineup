@@ -5,7 +5,7 @@ import api from "../utils/api";
 import moment from "moment";
 import Icons from "../../assets/images/sprite.svg";
 
-class Comment extends React.Component {
+class CommentActivity extends React.Component {
     constructor(props) {
         super(props);
 
@@ -19,10 +19,20 @@ class Comment extends React.Component {
     }
 
     render() {
+        console.log("comment:", this.state.comment);
+
+        let commentList = this.state.comment.map(el => {
+            return (
+                <div key={el._id}>
+                    <p>{el.user.username}</p>
+                    <p>{el.content}</p>
+                </div>
+            );
+        });
         return (
             <div>
-                {/* TODO: LIST ALL COMMENTS */}
-
+                <div>{commentList}</div>
+                <br />
                 <h4>comment:</h4>
                 <form onSubmit={this.submitComment}>
                     <input
@@ -46,12 +56,16 @@ class Comment extends React.Component {
 
     submitComment(evt) {
         evt.preventDefault();
-        api.post(`/api/event/${this.props.eventId}/chat`, { comment: this.state.newComment }).then(
-            comment => {
+        api.post(`/api/activity/${this.props.activityId}/chat`, { comment: this.state.newComment }).then(
+            res => {
                 console.log(comment);
+                this.setState({ comment: [...this.state.comment, res.comment] });
             }
         );
+        this.setState({
+            newComment: ""
+        });
     }
 }
 
-export default withRouter(Comment);
+export default withRouter(CommentActivity);

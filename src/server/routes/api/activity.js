@@ -11,7 +11,8 @@ router.post("/create", (req, res) => {
         title,
         detailActivity,
         date,
-        location
+        location,
+        comment
     })
         .save()
         .then(act => {
@@ -30,6 +31,8 @@ router.get("/list", (req, res) => {
     Activity.find({})
         .populate("attendees", "username")
         .populate("creator", "username")
+        .populate("comment.user", "username")
+        .sort({ date: 1 })
         .then(activities => {
             res.send(activities);
         });
@@ -103,6 +106,23 @@ router.post("/:id/attend", (req, res, next) => {
                 .catch(console.error);
         }
     });
+});
+
+// activity group chat
+router.post("/:id/chat", (req, res) => {
+    let id = req.params.id;
+
+    Activity.findByIdAndUpdate(
+        id,
+        {
+            $push: { comment: { user: req.user._id, content: req.body.comment } }
+        },
+        { new: true }
+    )
+        .then(comment => {
+            res.send(comment);
+        })
+        .catch(console.error);
 });
 
 module.exports = router;

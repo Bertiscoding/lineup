@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 import moment from "moment";
-import Comment from "./Comment";
+import CommentEvent from "./CommentEvent";
 import Icons from "../../assets/images/sprite.svg";
 
 class EventList extends React.Component {
@@ -41,7 +41,7 @@ class EventList extends React.Component {
             // if(el.isEditing) return <Edit event={el}></Edit>
             return (
                 <div className="event__card" key={el._id}>
-                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")}</p>
+                    <p>When: {moment(el.date).format("DD.MM.YYYY HH:mm")}</p>
                     <p>Where: {el.location}</p>
                     <p>Details: {el.detailEvent}</p>
                     <div>
@@ -51,7 +51,7 @@ class EventList extends React.Component {
                                 {el.attendees.map(el => {
                                     return (
                                         <Link key={el._id} to={`/user/${el._id}`}>
-                                            <p>{el.username} </p>
+                                            <li>{el.username} </li>
                                         </Link>
                                     );
                                 })}
@@ -86,14 +86,11 @@ class EventList extends React.Component {
                     <button onClick={() => this.handleJoinClick(el._id)}>
                         {isAttending ? "Cancel" : "Join"}
                     </button>
-                    <Comment eventId={el._id} comments={el.comment} />
+                    <CommentEvent eventId={el._id} comment={el.comment} />
                 </div>
             );
         });
         return <div className="event-list">{mappedEvents}</div>;
-        <div>
-            <h4>Conversation:</h4>
-        </div>;
     }
 
     handleJoinClick(eventId) {
