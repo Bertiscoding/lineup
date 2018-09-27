@@ -5,7 +5,7 @@ import api from "../utils/api";
 import moment from "moment";
 import Icons from "../../assets/images/sprite.svg";
 
-class Comment extends React.Component {
+class CommentActivity extends React.Component {
     constructor(props) {
         super(props);
 
@@ -56,7 +56,7 @@ class Comment extends React.Component {
 
     submitComment(evt) {
         evt.preventDefault();
-        api.post(`/api/event/${this.props.eventId}/chat`, { comment: this.state.newComment }).then(
+        api.post(`/api/activity/${this.props.activityId}/chat`, { comment: this.state.newComment }).then(
             res => {
                 console.log(comment);
                 this.setState({ comment: [...this.state.comment, res.comment] });
@@ -68,4 +68,4 @@ class Comment extends React.Component {
     }
 }
 
-export default withRouter(Comment);
+export default withRouter(CommentActivity);

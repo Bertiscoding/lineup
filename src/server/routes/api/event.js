@@ -109,6 +109,7 @@ router.post("/:id/attend", (req, res, next) => {
     });
 });
 
+// event group chat
 router.post("/:id/chat", (req, res) => {
     let id = req.params.id;
 
