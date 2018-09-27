@@ -18,10 +18,16 @@ body {
     }
 }
 
-// .container {
-//     padding: 25px calc((100vw - 960px) / 2);
+.icon {
+    display: inline;
+    &__edit {
+        width: 17px;
+        height: 17px;
+        margin-right: 20px;
+        fill: $primary-color;
+    }
 
-//     @media (max-width: 980px) {
-//         padding: 25px 10px;
-//     }
-// }
+    &__edit:hover {
+        fill: $secondary-color;
+    }
+}

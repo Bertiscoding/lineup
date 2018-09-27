@@ -1,0 +1,104 @@
+.profile {
+    padding: 120px 40px 40px 40px;
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+        font-weight: 300;
+        font-size: 180%;
+        color: $primary-color;
+        margin-left: 40px;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 0 30px;
+
+        img {
+            width: 280px;
+            border-radius: 7px;
+            border: 1px solid $secondary-color;
+            padding: 5px;
+            box-shadow: $box-shadow-1;
+            margin-bottom: 30px;
+        }
+
+        &-name {
+            color: $secondary-color;
+            font-weight: 700px;
+            font-size: 200%;
+            margin: 0;
+        }
+
+        &-about {
+            margin-left: 40px;
+        }
+
+        span {
+            color: $primary-color;
+            font-weight: 600;
+        }
+    }
+
+    &__events {
+        width: 50%;
+        padding: 0 30px;
+
+        &-card {
+            background-color: rgba(218, 213, 220, 0.3);
+            border: 1px solid $color-light;
+            padding: 20px 50px;
+            border-radius: 7px;
+            margin-bottom: 30px;
+        }
+
+        span {
+            color: $primary-color;
+            font-weight: 600;
+        }
+    }
+}
+
+//////// USER
+
+.user {
+    padding: 150px 40px 40px 80px;
+    display: flex;
+    justify-content: space-between;
+
+    &__img {
+        width: 35%;
+
+        img {
+            width: 100%;
+            border-radius: 7px;
+            border: 1px solid $secondary-color;
+            padding: 5px;
+            box-shadow: $box-shadow-1;
+        }
+    }
+
+    &__about {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &-name {
+            color: $secondary-color;
+            font-weight: 700px;
+            font-size: 200%;
+        }
+
+        span {
+            color: $primary-color;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 10px;
+        }
+    }
+}

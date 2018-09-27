@@ -35,24 +35,41 @@ class Profile extends Component {
         if (!this.props.user) return <Redirect to="/auth/sign-in" />; // this is actually the protection
 
         return (
-            <div>
-                <div className="profile">
-                    <img src={this.props.user.profilePicture} width="250px" alt="" />
-                    <br />
-                    <p>Name: {this.props.user.username}</p>
-                    <p>Age: {this.props.user.age} </p>
-                    <p>Fun fact: {this.props.user.description}</p>
-                    <p>You usually find me around the {this.props.user.skilllevel} of the lineup.</p>
+            <div className="profile">
+                <div className="profile__info">
+                    <h3>Hi, this is me:</h3>
+                    <img src={this.props.user.profilePicture} />
+                    <div className="profile__info-about">
+                        <p className="profile__info-name">{this.props.user.username}</p>
+                        <p>
+                            <span>About: </span> {this.props.user.description}
+                        </p>
+                        <p>
+                            <span>Age: </span>
+                            {this.props.user.age}
+                        </p>
+                        <p>
+                            You usually find me around the <span>{this.props.user.skilllevel}</span> of
+                            the lineup.
+                        </p>
+                    </div>
                 </div>
 
                 <div className="profile__events">
+                    <h3>My surf events:</h3>
                     {this.state.events.map(el => {
                         return (
-                            <div key={el._id}>
-                                <hr />
-                                <p>When: {moment(el.date).format("DD.MM.YYYY HH:m m")} </p>
-                                <p>Where: {el.location}</p>
-                                <p>Details: {el.detailEvent}</p>
+                            <div key={el._id} className="profile__events-card">
+                                <span>{moment(el.date).format("DD.MM.YYYY HH:mm")}</span>
+
+                                <p>
+                                    <span>Where: </span>
+                                    {el.location}
+                                </p>
+                                <p>
+                                    <span>Details: </span>
+                                    {el.detailEvent}
+                                </p>
                                 <React.Fragment>
                                     <Link to={`/event/${el._id}/update`} className="icon">
                                         <svg className="icon__edit">
