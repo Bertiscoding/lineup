@@ -46,14 +46,15 @@ const Navigation = props => {
                                 </svg>
                             </Link>
                         ) : (
-                            <span>
-                                <Link className="nav__link" to="/auth/sign-in">
-                                    Sign in
-                                </Link>
-                                <Link className="nav__link" to="/auth/sign-up">
-                                    Sign up
-                                </Link>
-                            </span>
+                            <span>&nbsp;</span>
+                            // <span>
+                            //     <Link className="nav__link" to="/auth/sign-in">
+                            //         Sign in
+                            //     </Link>
+                            //     <Link className="nav__link" to="/auth/sign-up">
+                            //         Sign up
+                            //     </Link>
+                            // </span>
                         )}
                     </div>
                 </div>

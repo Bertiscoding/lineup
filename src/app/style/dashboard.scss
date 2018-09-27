@@ -106,13 +106,12 @@
 
 .list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 20px 0;
-    // background-color: $color-white;
     background-color: rgba(218, 213, 220, 0.3);
 
     &__event {
-        width: 49%;
+        width: 50%;
 
         h1 {
             font-weight: 100;
@@ -123,7 +122,8 @@
         }
 
         &-card {
-            width: 98%;
+            width: 90%;
+            margin: 0 5%;
             background-color: #fff;
             border-radius: 7px;
             box-shadow: $box-shadow-1;

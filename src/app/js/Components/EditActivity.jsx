@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import api from "../utils/api";
 
+import Icons from "../../assets/images/sprite.svg";
+
 class EditActivity extends React.Component {
     constructor(props) {
         super(props);
@@ -37,56 +39,60 @@ class EditActivity extends React.Component {
 
     render() {
         return (
-            <div className="create__activity">
-                <h1>Edit your activity:</h1>
-                <form onSubmit={this._submitData}>
-                    <input
-                        type="text"
-                        name="title"
-                        value={this.state.title}
-                        onChange={evt => this.handleChange("title", evt.target.value)}
-                        // placeholder="title"
-                    />
+            <div className="edit">
+                <h2>Edit your activity:</h2>
+                <div className="edit__form">
+                    <form onSubmit={this._submitData}>
+                        <input
+                            type="text"
+                            name="title"
+                            value={this.state.title}
+                            onChange={evt => this.handleChange("title", evt.target.value)}
+                        />
 
-                    <textarea
-                        type="text"
-                        name="detailActivity"
-                        // placeholder="Change details..."
-                        value={this.state.detailActivity}
-                        onChange={evt => this.handleChange("detailActivity", evt.target.value)}
-                    />
+                        <textarea
+                            type="text"
+                            name="detailActivity"
+                            placeholder="Change details..."
+                            value={this.state.detailActivity}
+                            onChange={evt => this.handleChange("detailActivity", evt.target.value)}
+                        />
 
-                    <input
-                        type="text"
-                        name="location"
-                        // placeholder="What is the place or address?"
-                        value={this.state.location}
-                        onChange={evt => this.handleChange("location", evt.target.value)}
-                    />
+                        <input
+                            type="text"
+                            name="location"
+                            value={this.state.location}
+                            onChange={evt => this.handleChange("location", evt.target.value)}
+                        />
 
-                    <DatePicker
-                        className="datepicker"
-                        selected={this.state.date}
-                        onChange={this.changeDate}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        injectTimes={[
-                            moment()
-                                .hours(0)
-                                .minutes(1),
-                            moment()
-                                .hours(12)
-                                .minutes(5),
-                            moment()
-                                .hours(23)
-                                .minutes(59)
-                        ]}
-                        dateFormat="LLL"
-                    />
+                        <DatePicker
+                            className="datepicker"
+                            selected={this.state.date}
+                            onChange={this.changeDate}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            injectTimes={[
+                                moment()
+                                    .hours(0)
+                                    .minutes(1),
+                                moment()
+                                    .hours(12)
+                                    .minutes(5),
+                                moment()
+                                    .hours(23)
+                                    .minutes(59)
+                            ]}
+                            dateFormat="LLL"
+                        />
 
-                    {/* onClick={this._submitData} */}
-                    <button type="submit">Let's do it!</button>
-                </form>
+                        <button className="btn btn__full" type="submit">
+                            <svg className="icon__main">
+                                <use xlinkHref={`${Icons}#cool`} />
+                            </svg>
+                            Update
+                        </button>
+                    </form>
+                </div>
             </div>
         );
     }

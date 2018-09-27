@@ -3,33 +3,81 @@
 
     h1 {
         color: $primary-color;
+        text-align: center;
+        margin-bottom: 30px;
     }
 
     input {
         border: none;
         font-size: 16px;
         text-align: center;
+        width: 300px;
+        border-top-right-radius: 7px;
+        border-top-left-radius: 7px;
         padding: 10px;
         border-bottom: 2px solid $primary-color;
     }
 
-    &__in {
-        padding: 100px 30px 30px 30px;
-    }
-}
+    &__in,
+    &__up {
+        padding: 120px 30px 30px 30px;
+        background-image: url("./../assets/images/home_bg1.jpg");
+        background-size: cover;
+        width: 100vw;
+        height: 100%;
 
-.btn {
-    &__main {
-        margin-top: 50xp;
-        border: none;
-        background-color: $primary-color;
-        padding: 10px 30px;
-        border-radius: 7px;
-        font-size: 16px;
-        color: #ffffff;
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
+
+        &-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 400px;
+            padding: 30px;
+            border-radius: 7px;
+
+            .btn__full {
+                width: 150px;
+                padding: 10px 25px;
+                background-color: $primary-color;
+
+                background-image: linear-gradient(
+                    120deg,
+                    transparent 0%,
+                    transparent 50%,
+                    $secondary-color 50%
+                );
+            }
+
+            .btn__full a {
+                color: #ffffff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__instead a {
+        color: #4d535a;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 2px solid #4d535a;
+        padding: 5px;
+
+        // for animation:
+        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-light 50%);
+        background-size: 220%;
+
+        transition: all 0.4s;
+    }
+
+    &__instead a:hover {
+        background-position: 100%;
     }
 }
 
@@ -42,5 +90,27 @@
     }
 }
 
-// text-decoration: underline;
-// text-decoration-style: wavy;
+.sign__up-copy {
+    background-color: $secondary-color;
+    width: 100%;
+    font-size: 20px;
+    padding: 30px;
+    line-height: 1.7;
+
+    &-img img {
+        width: 300px;
+    }
+
+    span {
+        font-weight: 700;
+        color: $primary-color;
+    }
+
+    p {
+        padding-top: 30px;
+        color: #ffffff;
+        width: 70%;
+        margin: 0 15%;
+        font-weight: 300;
+    }
+}
