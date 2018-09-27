@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const NotFound = () => {
     return (
-        <div className="container">
-            <h1>404</h1>
+        <div>
+            <div className="fourohfour">
+                <h1>404</h1>
+            </div>
+            <div id="credit">
+                <p>Photocredit: Matt Dawson</p>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default NotFound
+export default NotFound;
