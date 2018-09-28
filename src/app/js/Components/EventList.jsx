@@ -32,7 +32,7 @@ class EventList extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <div>loading.....</div>;
+            return <div>🏄🏽</div>;
         }
 
         const mappedEvents = this.state.events.map((el, index) => {

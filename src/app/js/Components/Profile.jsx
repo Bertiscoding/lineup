@@ -28,7 +28,7 @@ class Profile extends Component {
 
     render() {
         if (this.state.loading) {
-            return <div>loading.....</div>;
+            return <div>🏄🏽</div>;
         }
 
         console.log("props", this.props);
