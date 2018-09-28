@@ -32,7 +32,7 @@ class ActivityList extends React.Component {
     }
     render() {
         if (this.state.loading) {
-            return <div>loading...</div>;
+            return <div>🏄🏽</div>;
         }
 
         const mappedActivities = this.state.activities.map((el, index) => {
