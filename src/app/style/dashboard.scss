@@ -83,13 +83,12 @@
 
     &-one,
     &-two,
-    &-three,
-    &-four {
+    &-three {
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding-left: 30px;
-        width: 24%;
+        width: 33%;
     }
 
     span {

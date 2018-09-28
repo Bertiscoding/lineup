@@ -132,7 +132,7 @@ class NewUser extends React.Component {
             .then(result => {
                 localStorage.setItem("identity", result.token);
                 this.props.setUser();
-                this.props.history.push("/profile");
+                this.props.history.push("/dashboard");
             })
             .catch(err => console.log("something went wrong ", err));
     }
