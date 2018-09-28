@@ -1,0 +1,31 @@
+@media only screen and (min-width: 1460px) {
+    font-size: 150%;
+
+    .home,
+    .list,
+    .comment {
+        font-size: 200%;
+
+        &__bg {
+            background-position: center center !important;
+        }
+
+        .forecast__result p,
+        .forecast__result span {
+            font-size: 30px;
+        }
+    }
+
+    .create {
+        justify-content: space-evenly !important;
+    }
+
+    .user__about,
+    .profile {
+        font-size: 200%;
+    }
+}
+
+.newuser__card {
+    width: 500px !important;
+}
