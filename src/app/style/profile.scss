@@ -63,6 +63,11 @@
     display: flex;
     justify-content: space-between;
 
+    @include respond(tab-land-1120) {
+        flex-direction: column;
+        height: auto;
+    }
+
     h3 {
         font-weight: 300;
         font-size: 180%;
@@ -106,6 +111,10 @@
         width: 50%;
         padding: 0 30px;
 
+        @include respond(tab-port-950) {
+            width: 100%;
+        }
+
         &-card {
             background-color: rgba(218, 213, 220, 0.3);
             border: 1px solid $color-light;
@@ -128,8 +137,17 @@
     display: flex;
     justify-content: space-between;
 
+    @include respond(phone-big-610) {
+        flex-direction: column;
+    }
+
     &__img {
         width: 35%;
+
+        @include respond(phone-big-610) {
+            width: 100%;
+            margin-bottom: 30px;
+        }
 
         img {
             width: 100%;

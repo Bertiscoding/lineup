@@ -1,31 +1,49 @@
-@media only screen and (min-width: 1460px) {
-    //     font-size: 150%;
-
-    //     .home,
-    //     .list,
-    //     .comment {
-    //         font-size: 200%;
-
-    //         &__bg {
-    //             background-position: center center !important;
-    //         }
-
-    //         .forecast__result p,
-    //         .forecast__result span {
-    //             font-size: 30px;
-    //         }
-    //     }
-
-    .create {
-        justify-content: space-evenly !important;
+@mixin respond($breakpoint) {
+    //
+    // desktop-sm @include respond(desktop-sm-1300)
+    @if $breakpoint == desktop-sm-1300 {
+        @media (max-width: 1300px) {
+            @content;
+        }
     }
 
-    //     .user__about,
-    //     .profile {
-    //         font-size: 200%;
-    //     }
-    // }
+    // tab-land @include respond(tab-land-1120)
+    @if $breakpoint == tab-land-1120 {
+        @media (max-width: 1120px) {
+            @content;
+        }
+    }
 
-    // // .newuser__card {
-    // //     width: 500px !important;
+    // tab-land @include respond(tab-land-1050)
+    @if $breakpoint == tab-land-sm-1050 {
+        @media (max-width: 1050px) {
+            @content;
+        }
+    }
+
+    // tab-land @include respond(tab-land-1050)
+    @if $breakpoint == tab-port-950 {
+        @media (max-width: 950px) {
+            @content;
+        }
+    }
+
+    // tab-land @include respond(tab-land-1050)
+    @if $breakpoint == phone-big-610 {
+        @media (max-width: 610px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == phone-400 {
+        @media (max-width: 400px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == phone-sm-300 {
+        @media (max-width: 300px) {
+            @content;
+        }
+    }
 }

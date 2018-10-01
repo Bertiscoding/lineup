@@ -16,7 +16,7 @@ const Navigation = props => {
                 </div>
 
                 <div className="nav__right">
-                    <div>
+                    <div className="nav__right-container">
                         {props.user && (
                             <span>
                                 <Link className="btn" to="/create">
@@ -26,7 +26,7 @@ const Navigation = props => {
                         )}
                     </div>
 
-                    <div>
+                    <div className="nav__right-link-container">
                         {props.user && (
                             <span>
                                 <Link className="nav__link" to="/profile">
@@ -38,7 +38,7 @@ const Navigation = props => {
                         )}
                     </div>
 
-                    <div>
+                    <div className="nav__right-link-container">
                         {props.user ? (
                             <Link className="nav__link" to="/auth/logout">
                                 <svg className="nav__icon icon">
@@ -57,6 +57,17 @@ const Navigation = props => {
                             // </span>
                         )}
                     </div>
+                </div>
+            </div>
+            <div className="nav__mobile">
+                <div className="nav__mobile-btn">
+                    {props.user && (
+                        <span>
+                            <Link className="btn" to="/create">
+                                <button className="btn__main">Create Event</button>
+                            </Link>
+                        </span>
+                    )}
                 </div>
             </div>
         </div>

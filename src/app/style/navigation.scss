@@ -5,6 +5,11 @@
     position: fixed;
     width: 100%;
     box-shadow: $box-shadow-1;
+    z-index: 999;
+
+    @include respond(phone-big-610) {
+        flex-direction: column;
+    }
 
     button:hover {
         background-color: $primary-color;
@@ -31,8 +36,22 @@
         display: flex;
         align-items: center;
 
+        @include respond(phone-big-610) {
+            align-items: flex-end;
+        }
+
+        @include respond(phone-sm-300) {
+            align-items: center;
+        }
+
         .btn__main {
             margin-right: 50px;
+        }
+
+        &-container {
+            @include respond(phone-big-610) {
+                display: none;
+            }
         }
     }
 
@@ -40,6 +59,10 @@
         color: #fff;
         margin-right: 50px;
         text-decoration: none;
+
+        @include respond(phone-sm-300) {
+            margin-right: 10px;
+        }
     }
     &__icon {
         width: 40px;
@@ -53,6 +76,16 @@
             background-color: $primary-color;
             padding: 5px;
             border-radius: 7px;
+        }
+    }
+
+    &__mobile {
+        display: none;
+
+        @include respond(phone-big-610) {
+            display: flex;
+            justify-content: center;
+            margin-top: 26px;
         }
     }
 }

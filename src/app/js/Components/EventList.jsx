@@ -41,7 +41,7 @@ class EventList extends React.Component {
             // if(el.isEditing) return <Edit event={el}></Edit>
             return (
                 <div className="list__event-card" key={el._id}>
-                    <div>
+                    <div className="list__event-card-container">
                         <div className="list__event-card-join">
                             <p className="list__event-card-date">
                                 {moment(el.date).format("DD.MM.YYYY, HH:mm")}
