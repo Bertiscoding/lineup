@@ -2,7 +2,7 @@
     //
     // desktop-sm @include respond(desktop-sm-1300)
     @if $breakpoint == desktop-sm-1300 {
-        @media (max-width: 1300px) {
+        @media (max-width: 1200px) {
             @content;
         }
     }
