@@ -7,8 +7,11 @@
     box-shadow: $box-shadow-1;
     z-index: 999;
 
+    justify-content: space-between;
+
     @include respond(phone-big-610) {
         flex-direction: column;
+        align-items: center;
     }
 
     button:hover {
@@ -29,6 +32,11 @@
     &__logo {
         img {
             width: 120px;
+
+            @include respond(phone-big-610) {
+                width: 160px;
+                margin-bottom: 20px;
+            }
         }
     }
 
@@ -36,22 +44,32 @@
         display: flex;
         align-items: center;
 
-        @include respond(phone-big-610) {
-            align-items: flex-end;
+        @include respond(phone-400) {
+            justify-content: space-between;
         }
 
-        @include respond(phone-sm-300) {
-            align-items: center;
+        &-container button {
+            @include respond(phone-400) {
+                font-size: 14px;
+                width: 90%;
+                padding: 10px 5px;
+                margin-right: 10%;
+            }
+        }
+
+        &-link-container {
+            @include respond(phone-400) {
+                width: 40px;
+                margin: 0 20px;
+            }
+
+            @include respond(phone-sm-230) {
+                margin: 0 10px;
+            }
         }
 
         .btn__main {
             margin-right: 50px;
-        }
-
-        &-container {
-            @include respond(phone-big-610) {
-                display: none;
-            }
         }
     }
 
@@ -59,11 +77,8 @@
         color: #fff;
         margin-right: 50px;
         text-decoration: none;
-
-        @include respond(phone-sm-300) {
-            margin-right: 10px;
-        }
     }
+
     &__icon {
         width: 40px;
         height: 40px;

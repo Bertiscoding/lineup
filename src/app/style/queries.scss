@@ -41,8 +41,8 @@
         }
     }
 
-    @if $breakpoint == phone-sm-300 {
-        @media (max-width: 300px) {
+    @if $breakpoint == phone-sm-230 {
+        @media (max-width: 350px) {
             @content;
         }
     }

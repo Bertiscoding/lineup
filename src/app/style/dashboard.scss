@@ -1,4 +1,8 @@
 .home {
+    // @include respond(phone-sm-230) {
+    //     min-width: 230px;
+    // }
+
     &__bg {
         background-image: url("./../assets/images/home_bg1.jpg");
         background-position: center top;
@@ -12,10 +16,10 @@
         background-color: $color-white;
         border-radius: 7px;
 
-        @include respond(phone-sm-300) {
+        @include respond(phone-sm-230) {
             padding: 5px;
-            width: 96%;
-            margin-left: 2%;
+            width: 100%;
+            // margin-left: 2%;
         }
     }
 
@@ -28,7 +32,7 @@
             padding: 0 10px;
         }
 
-        @include respond(phone-sm-300) {
+        @include respond(phone-sm-230) {
             padding: 5px;
             width: 96%;
             margin-left: 2%;
@@ -36,21 +40,25 @@
 
         h1 {
             font-weight: 600;
-            font-size: 200%;
             color: $primary-color;
             display: inline-block;
-            margin-right: 100px;
+            margin-right: 50px;
 
             @include respond(desktop-sm-1300) {
-                font-size: 100%;
+                font-size: 150%;
                 margin-right: 20px;
             }
 
             @include respond(tab-port-950) {
                 font-size: 180%;
             }
+
+            @include respond(phone-big-610) {
+                font-size: 120%;
+            }
+
             @include respond(phone-400) {
-                font-size: 100%;
+                font-size: 150%;
             }
         }
 
@@ -83,7 +91,7 @@
                 }
 
                 @include respond(phone-400) {
-                    width: 250px;
+                    width: 230px;
                 }
 
                 option {
@@ -126,6 +134,10 @@
     .btn__ghost {
         margin-left: 30px;
         background-color: #fff;
+
+        @include respond(phone-big-610) {
+            margin-left: 0;
+        }
     }
 }
 
@@ -142,7 +154,8 @@
     }
 
     @include respond(phone-400) {
-        padding: 5px;
+        width: 100%;
+        margin-left: 0;
     }
 
     p {
@@ -152,6 +165,10 @@
 
         @include respond(tab-land-sm-1050) {
             font-size: 16px;
+        }
+
+        @include respond(phone-400) {
+            font-size: 14px;
         }
     }
 
@@ -179,8 +196,11 @@
         width: 33%;
 
         @include respond(tab-port-950) {
-            width: 90%;
-            align-items: center;
+            padding-left: 0;
+        }
+
+        @include respond(phone-400) {
+            width: 100%;
         }
     }
 
@@ -188,6 +208,10 @@
     &-three {
         @include respond(tab-port-950) {
             margin-top: 30px;
+        }
+
+        @include respond(phone-400) {
+            margin-top: 0;
         }
     }
 
@@ -306,6 +330,7 @@
 
             p {
                 color: $primary-color;
+                word-wrap: break-word;
             }
 
             span {
