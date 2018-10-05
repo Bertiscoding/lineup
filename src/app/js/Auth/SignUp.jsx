@@ -62,9 +62,6 @@ class SignUp extends React.Component {
                         coffee or watching surf movies together. A great way to make some new friends
                         with like-minded people who whare the same deep passion for surfing like you do.
                     </p>
-                    <div className="sign__up-copy-img">
-                        <img src="./../../assets/images/li-logo-white-01.png" alt="" />
-                    </div>
                 </div>
             </div>
         );

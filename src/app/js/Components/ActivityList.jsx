@@ -40,7 +40,7 @@ class ActivityList extends React.Component {
                 this.props.user && el.attendees.find(attendee => this.props.user._id === attendee._id);
             return (
                 <div className="list__event-card" key={el._id}>
-                    <div>
+                    <div className="list__event-card-container">
                         <div className="list__event-card-join">
                             <p className="list__event-card-date">{el.title}</p>
                             <button className="btn__full" onClick={() => this.handleJoinClick(el._id)}>

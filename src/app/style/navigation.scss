@@ -5,6 +5,14 @@
     position: fixed;
     width: 100%;
     box-shadow: $box-shadow-1;
+    z-index: 999;
+
+    justify-content: space-between;
+
+    @include respond(phone-big-610) {
+        flex-direction: column;
+        align-items: center;
+    }
 
     button:hover {
         background-color: $primary-color;
@@ -24,12 +32,48 @@
     &__logo {
         img {
             width: 120px;
+
+            @include respond(phone-big-610) {
+                width: 160px;
+                margin-bottom: 20px;
+            }
         }
     }
 
     &__right {
         display: flex;
         align-items: center;
+
+        @include respond(phone-400) {
+            justify-content: space-between;
+        }
+
+        &-container button {
+            @include respond(phone-400) {
+                font-size: 14px;
+                width: 90%;
+                padding: 10px 5px;
+                margin-right: 10%;
+            }
+
+            @include respond(phone-sm-230) {
+                font-size: 12px;
+                width: 90%;
+                padding: 10px 5px;
+                margin-right: 10%;
+            }
+        }
+
+        &-link-container {
+            @include respond(phone-400) {
+                width: 30px;
+                margin: 0 20px;
+            }
+
+            @include respond(phone-sm-230) {
+                margin: 0 10px;
+            }
+        }
 
         .btn__main {
             margin-right: 50px;
@@ -41,6 +85,7 @@
         margin-right: 50px;
         text-decoration: none;
     }
+
     &__icon {
         width: 40px;
         height: 40px;
@@ -49,10 +94,25 @@
 
         transition: all 0.4s;
 
+        @include respond(phone-sm-230) {
+            width: 30px;
+            height: 30px;
+        }
+
         &:hover {
             background-color: $primary-color;
             padding: 5px;
             border-radius: 7px;
+        }
+    }
+
+    &__mobile {
+        display: none;
+
+        @include respond(phone-big-610) {
+            display: flex;
+            justify-content: center;
+            margin-top: 26px;
         }
     }
 }
