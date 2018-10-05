@@ -14,8 +14,12 @@
         height: auto;
     }
 
+    @include respond(phone-big-610) {
+        padding-top: 150px;
+    }
+
     @include respond(phone-sm-230) {
-        min-width: 330px;
+        min-width: 229px;
     }
 
     &__event {
@@ -28,15 +32,18 @@
         display: flex;
         flex-direction: column;
 
-        @include respond(tab-land-1120) {
-            // flex-grow: 1;
-            // width: 100%;
+        @include respond(phone-big-610) {
+            padding: 0 20px 20px 20px;
         }
 
         h2 {
             color: $primary-color;
             font-size: 180%;
             font-weight: 300;
+
+            @include respond(phone-sm-230) {
+                font-size: 140%;
+            }
         }
 
         .datepicker,
@@ -51,7 +58,8 @@
             color: #4f545a;
 
             @include respond(phone-sm-230) {
-                width: 250px;
+                width: 200px;
+                font-size: 12px;
             }
         }
 
@@ -88,10 +96,22 @@
     flex-direction: column;
     align-items: center;
 
+    @include respond(phone-big-610) {
+        padding: 200px 0 50px 0;
+    }
+
     h2 {
         font-weight: 100;
         color: $primary-color;
         font-size: 220%;
+
+        @include respond(phone-big-610) {
+            font-size: 200%;
+        }
+
+        @include respond(phone-sm-230) {
+            font-size: 130%;
+        }
     }
 
     &__form form {
@@ -105,6 +125,15 @@
         width: 500px;
         box-shadow: $box-shadow-1;
 
+        @include respond(phone-big-610) {
+            padding: 35px;
+            width: 300px;
+        }
+
+        @include respond(phone-sm-230) {
+            width: 225px;
+        }
+
         .datepicker,
         input,
         textarea {
@@ -116,6 +145,16 @@
             font-size: 16px;
             color: #4f545a;
             margin-bottom: 30px;
+
+            @include respond(phone-big-610) {
+                width: 200px;
+                font-size: 14px;
+            }
+
+            @include respond(phone-sm-230) {
+                width: 200px;
+                font-size: 12px;
+            }
         }
 
         .btn__full {

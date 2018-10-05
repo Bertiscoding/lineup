@@ -55,11 +55,18 @@
                 padding: 10px 5px;
                 margin-right: 10%;
             }
+
+            @include respond(phone-sm-230) {
+                font-size: 12px;
+                width: 90%;
+                padding: 10px 5px;
+                margin-right: 10%;
+            }
         }
 
         &-link-container {
             @include respond(phone-400) {
-                width: 40px;
+                width: 30px;
                 margin: 0 20px;
             }
 
@@ -86,6 +93,11 @@
         color: #fff;
 
         transition: all 0.4s;
+
+        @include respond(phone-sm-230) {
+            width: 30px;
+            height: 30px;
+        }
 
         &:hover {
             background-color: $primary-color;

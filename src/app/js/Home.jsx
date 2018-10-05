@@ -126,7 +126,7 @@ class Home extends React.Component {
                 <div className="list">
                     <div className="list__event" id="home-left">
                         <h1>
-                            Let's go surfing! <br /> Join or create and event:
+                            Let's go surfing! <br /> Join or create an event:
                         </h1>
                         <EventList
                             location={this.state.location}

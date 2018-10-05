@@ -1,7 +1,7 @@
 .home {
-    // @include respond(phone-sm-230) {
-    //     min-width: 230px;
-    // }
+    @include respond(phone-sm-230) {
+        min-width: 230px;
+    }
 
     &__bg {
         background-image: url("./../assets/images/home_bg1.jpg");
@@ -9,6 +9,10 @@
         background-size: cover;
         padding: 80px 50px 90px 50px;
         width: 100%;
+
+        @include respond(phone-sm-230) {
+            padding: 80px 5px 90px 5px;
+        }
     }
 
     &__container {
@@ -17,9 +21,7 @@
         border-radius: 7px;
 
         @include respond(phone-sm-230) {
-            padding: 5px;
             width: 100%;
-            // margin-left: 2%;
         }
     }
 
@@ -34,8 +36,8 @@
 
         @include respond(phone-sm-230) {
             padding: 5px;
-            width: 96%;
-            margin-left: 2%;
+            width: 90%;
+            margin-left: 5%;
         }
 
         h1 {
@@ -59,6 +61,10 @@
 
             @include respond(phone-400) {
                 font-size: 150%;
+            }
+
+            @include respond(phone-sm-230) {
+                font-size: 120%;
             }
         }
 
@@ -92,6 +98,10 @@
 
                 @include respond(phone-400) {
                     width: 230px;
+                }
+
+                @include respond(phone-sm-230) {
+                    width: 200px;
                 }
 
                 option {
@@ -270,6 +280,11 @@
             @include respond(phone-400) {
                 font-size: 160%;
             }
+
+            @include respond(phone-sm-230) {
+                margin-left: 20px;
+                font-size: 130%;
+            }
         }
 
         &-card {
@@ -289,6 +304,10 @@
             @include respond(phone-400) {
                 width: 96%;
                 margin: 30px 2%;
+            }
+
+            @include respond(phone-sm-230) {
+                padding: 0;
             }
 
             &-container {
@@ -319,6 +338,10 @@
                     @include respond(tab-port-950) {
                         font-size: 130%;
                     }
+
+                    @include respond(phone-sm-230) {
+                        font-size: 110%;
+                    }
                 }
 
                 .btn__full {
@@ -331,6 +354,10 @@
             p {
                 color: $primary-color;
                 word-wrap: break-word;
+
+                @include respond(phone-sm-230) {
+                    font-size: 100%;
+                }
             }
 
             span {
@@ -384,10 +411,13 @@
         p {
             font-size: 14px;
         }
+    }
+    @include respond(tab-port-950) {
+        font-size: 18px;
+    }
 
-        @include respond(tab-port-950) {
-            font-size: 18px;
-        }
+    @include respond(phone-sm-230) {
+        padding: 0 7px 7px 7px;
     }
 
     h4 {
@@ -402,6 +432,10 @@
         @include respond(tab-port-950) {
             font-size: 130%;
         }
+
+        @include respond(phone-sm-230) {
+            font-size: 100%;
+        }
     }
 
     &__list {
@@ -414,6 +448,12 @@
 
         &-entry {
             margin-bottom: 20px;
+
+            p {
+                @include respond(phone-sm-230) {
+                    font-size: 12px;
+                }
+            }
         }
     }
 
@@ -454,6 +494,13 @@
             input,
             button {
                 font-size: 16px;
+            }
+        }
+
+        @include respond(phone-sm-230) {
+            input,
+            button {
+                font-size: 12px;
             }
         }
     }
